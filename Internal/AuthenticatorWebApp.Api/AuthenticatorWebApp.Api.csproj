@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AuthenticatorWebApp.Core\AuthenticatorWebApp.Core.csproj" />
+    <ProjectReference Include="..\XTI_AuthApi\XTI_AuthApi.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="XTI_App.Api" Version="1.6.1" />
+  </ItemGroup>
+</Project>

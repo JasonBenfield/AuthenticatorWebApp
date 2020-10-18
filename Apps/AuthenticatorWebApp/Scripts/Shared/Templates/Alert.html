@@ -1,0 +1,8 @@
+﻿<!-- ko if: message -->
+<div class="alert" data-bind="text: message, css: {
+     'alert-success': contextualClass.isSuccess,
+     'alert-info': contextualClass.isInfo,
+     'alert-warning': contextualClass.isWarning,
+     'alert-danger': contextualClass.isDanger
+     }"></div>
+<!-- /ko -->

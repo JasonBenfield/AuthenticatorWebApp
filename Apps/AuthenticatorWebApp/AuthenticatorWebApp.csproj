@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Internal\AuthenticatorWebApp.ApiControllers\AuthenticatorWebApp.ApiControllers.csproj" />
+    <ProjectReference Include="..\..\Internal\AuthenticatorWebApp.Extensions\AuthenticatorWebApp.Extensions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Scripts\Authenticator\Api\" />
+  </ItemGroup>
+
+</Project>

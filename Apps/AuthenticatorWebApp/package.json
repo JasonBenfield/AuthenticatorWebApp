@@ -1,0 +1,37 @@
+{
+  "name": "authenticatorwebapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jquery": "^3.5.1",
+    "@types/lodash": "^4.14.158",
+    "@types/moment": "^2.13.0",
+    "bootstrap": "^4.5.0",
+    "jquery": "^3.5.1",
+    "knockout": "^3.5.1",
+    "lodash": "^4.17.19",
+    "moment": "^2.27.0",
+    "popper.js": "^1.16.1",
+    "reflect-metadata": "^0.1.13",
+    "tslib": "^2.0.0",
+    "tsyringe": "^4.3.0"
+  },
+  "devDependencies": {
+    "css-loader": "^4.2.0",
+    "html-loader": "^1.1.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^9.0.2",
+    "style-loader": "^1.2.1",
+    "ts-loader": "^8.0.2",
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}

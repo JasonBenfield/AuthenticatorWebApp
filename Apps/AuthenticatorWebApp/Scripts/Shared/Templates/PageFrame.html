@@ -1,0 +1,15 @@
+﻿<div class="d-flex flex-column vh-100">
+    <div class="bg-primary">
+        <h1>
+            <span data-bind="text: appTitle"></span> <small data-bind="text: pageTitle"></small>
+        </h1>
+        <!-- ko if: isAuthenticated -->
+        <div data-bind="text: userName"></div>
+        <a data-bind="attr: { href: logoutUrl }">Logout</a>
+        <!-- /ko -->
+    </div>
+    <div class="flex-fill">
+        <!-- ko component: { name: page.template, params: page } --><!-- /ko -->
+    </div>
+</div>
+<!-- ko component: { name: modalError.template, params: modalError } --><!-- /ko -->

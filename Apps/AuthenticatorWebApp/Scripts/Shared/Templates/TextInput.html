@@ -1,0 +1,17 @@
+﻿<!-- ko if: isVisible -->
+    <div class="form-group row">
+        <!-- ko if: isCaptionVisible -->
+        <label data-bind="text: caption, class: captionCss"></label>
+        <!-- /ko -->
+        <!-- ko if: isValueVisible -->
+        <div data-bind="class: valueCss">
+            <!-- ko if: isEnabled -->
+            <input data-bind="attr: { type: type, name: name }, textInput: value" class="form-control" />
+            <!-- /ko -->
+            <!-- ko if: !isEnabled() -->
+            <div data-bind="text: value"></div>
+            <!-- /ko -->
+        </div>
+        <!-- /ko -->
+    </div>
+<!-- /ko -->
