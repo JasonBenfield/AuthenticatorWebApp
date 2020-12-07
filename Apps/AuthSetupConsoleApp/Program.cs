@@ -13,10 +13,10 @@ namespace AuthSetupConsoleApp
     {
         static Task Main(string[] args)
         {
-            return Host.CreateDefaultBuilder()
+            return Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
-                    config.UseXtiConfiguration(hostingContext.HostingEnvironment.EnvironmentName, args);
+                    config.UseXtiConfiguration(hostingContext.HostingEnvironment, args);
                 })
                 .ConfigureServices((hostContext, services) =>
                 {

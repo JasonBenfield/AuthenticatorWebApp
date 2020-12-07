@@ -1,4 +1,6 @@
 ﻿using AuthenticatorWebApp.Api;
+using AuthenticatorWebApp.ApiControllers;
+using AuthenticatorWebApp.Core;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,18 +19,26 @@ namespace AuthenticatorWebApp.Extensions
             services.AddScoped<IHashedPasswordFactory, Md5HashedPasswordFactory>();
             services.AddScoped<AccessForAuthenticate, JwtAccess>();
             services.AddScoped<AccessForLogin, CookieAccess>();
-            services.AddScoped<AppApi>(sp =>
+            services.AddScoped<AuthGroupFactory>();
+            services.AddSingleton(_ => AuthenticatorAppKey.Key);
+            services.AddScoped(sp =>
             {
+                var appKey = sp.GetService<AppKey>();
                 var appApiUser = sp.GetService<IAppApiUser>();
                 var xtiPath = sp.GetService<XtiPath>();
-                return new AuthenticatorApi
+                var authGroupFactory = sp.GetService<AuthGroupFactory>();
+                return new AuthenticatorAppApi
                 (
+                    appKey,
                     xtiPath.Version,
                     appApiUser,
-                    new AuthGroupFactory(sp)
+                    authGroupFactory
                 );
             });
-            services.AddScoped(sp => (AuthenticatorApi)sp.GetService<AppApi>());
+            services.AddScoped<AppApi, AuthenticatorAppApi>(sp =>
+            {
+                return sp.GetService<AuthenticatorAppApi>();
+            });
             services
                 .AddMvc()
                 .AddJsonOptions(options =>

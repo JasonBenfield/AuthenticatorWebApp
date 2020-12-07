@@ -1,6 +1,6 @@
 ﻿import * as template from './LoginPage.html';
 import { LoginComponentViewModel } from './LoginComponentViewModel';
-import { PageViewModel } from '../PageViewModel';
+import { PageViewModel } from '../../Shared/PageViewModel';
 import { singleton } from 'tsyringe';
 
 @singleton()

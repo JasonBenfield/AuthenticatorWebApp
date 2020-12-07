@@ -17,11 +17,11 @@ namespace XTI_AuthApi
             var user = await factory.Users().User(userName);
             if (!user.Exists())
             {
-                throw new UserNotFoundException(userName.Value);
+                throw new UserNotFoundException(userName.DisplayText);
             }
             if (!user.IsPasswordCorrect(hashedPassword))
             {
-                throw new PasswordIncorrectException(userName.Value);
+                throw new PasswordIncorrectException(userName.DisplayText);
             }
             return user;
         }

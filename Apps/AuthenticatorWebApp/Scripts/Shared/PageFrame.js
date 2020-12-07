@@ -2,9 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PageFrame = void 0;
 var PageFrame = /** @class */ (function () {
-    function PageFrame(vm, hub) {
+    function PageFrame(vm) {
         this.vm = vm;
-        this.hub = hub;
     }
     return PageFrame;
 }());

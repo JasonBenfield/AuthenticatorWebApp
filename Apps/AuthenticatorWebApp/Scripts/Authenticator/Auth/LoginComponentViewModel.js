@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LoginComponentViewModel = void 0;
 var tslib_1 = require("tslib");
-var AwaitableComponent_1 = require("../AwaitableComponent");
-var TextInput_1 = require("../TextInput");
-var ComponentTemplate_1 = require("../ComponentTemplate");
-var CommandPillTemplate_1 = require("../Templates/CommandPillTemplate");
+var AwaitableComponent_1 = require("../../Shared/AwaitableComponent");
+var TextInput_1 = require("../../Shared/TextInput");
+var ComponentTemplate_1 = require("../../Shared/ComponentTemplate");
+var CommandPillTemplate_1 = require("../../Shared/Templates/CommandPillTemplate");
 var template = require("./LoginComponent.html");
-var OffscreenSubmitViewModel_1 = require("../OffscreenSubmitViewModel");
+var OffscreenSubmitViewModel_1 = require("../../Shared/OffscreenSubmitViewModel");
 var LoginComponentViewModel = /** @class */ (function (_super) {
     tslib_1.__extends(LoginComponentViewModel, _super);
     function LoginComponentViewModel() {

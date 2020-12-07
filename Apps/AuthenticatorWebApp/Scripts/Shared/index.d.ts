@@ -9,6 +9,9 @@ declare module '*.html' {
     export default content;
 }
 
+interface IEmptyRequest {
+}
+
 interface PageContext {
     BaseUrl: string;
     CacheBust: string;
@@ -67,4 +70,8 @@ interface IAppApiView<TArgs> {
 
 interface IUserGroup {
     readonly Index: IAppApiView<IUserStartRequest>;
+}
+
+interface ILogoutUrl {
+    value(): string;
 }

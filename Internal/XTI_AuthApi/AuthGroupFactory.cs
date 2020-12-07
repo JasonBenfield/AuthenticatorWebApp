@@ -3,6 +3,7 @@ using System;
 using XTI_App;
 using XTI_App.Api;
 using XTI_Core;
+using XTI_TempLog;
 using XTI_WebApp;
 using XTI_WebApp.Api;
 
@@ -41,18 +42,19 @@ namespace XTI_AuthApi
 
         private Authentication createAuthentication(IAccess access)
         {
-            var sesssionContext = sp.GetService<ISessionContext>();
+            var tempLogSession = sp.GetService<TempLogSession>();
             var unverifiedUser = new UnverifiedUser(sp.GetService<AppFactory>());
             var hashedPasswordFactory = sp.GetService<IHashedPasswordFactory>();
-            return new Authentication(sesssionContext, unverifiedUser, access, hashedPasswordFactory);
+            var userContext = sp.GetService<IUserContext>();
+            return new Authentication(tempLogSession, unverifiedUser, access, hashedPasswordFactory, userContext);
         }
 
         public AppAction<EmptyRequest, AppActionRedirectResult> CreateLogoutAction()
         {
             var access = sp.GetService<AccessForLogin>();
-            var sessionContext = sp.GetService<ISessionContext>();
+            var tempLogSession = sp.GetService<TempLogSession>();
             var clock = sp.GetService<Clock>();
-            return new LogoutAction(access, sessionContext, clock);
+            return new LogoutAction(access, tempLogSession);
         }
     }
 }

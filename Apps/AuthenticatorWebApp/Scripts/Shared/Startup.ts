@@ -3,8 +3,6 @@ import { AppApiEvents } from './AppApiEvents';
 import { ConsoleLog } from './ConsoleLog';
 import { ModalErrorComponent } from './Error/ModalErrorComponent';
 import { container } from 'tsyringe';
-import { HubAppApi } from './Api/HubAppApi';
-import { AppApi } from './AppApi';
 
 export function startup(pageVM: any, page: any) {
     container.register('PageVM', { useFactory: c => c.resolve(pageVM) });
@@ -18,16 +16,5 @@ export function startup(pageVM: any, page: any) {
             })
         }
     );
-    container.register(
-        HubAppApi,
-        {
-            useFactory: c => new HubAppApi(
-                c.resolve(AppApiEvents),
-                `${location.protocol}//${location.host}`,
-                'Current'
-            )
-        }
-    )
-    container.register(AppApi, { useFactory: c => c.resolve(HubAppApi) });
     new PageLoader().load();
 }

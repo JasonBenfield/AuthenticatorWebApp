@@ -1,4 +1,5 @@
-﻿using XTI_App.Api;
+﻿using XTI_App;
+using XTI_App.Api;
 using XTI_WebApp.Api;
 
 namespace XTI_AuthApi
@@ -10,7 +11,7 @@ namespace XTI_AuthApi
             (
                   api,
                   new NameFromGroupClassName(nameof(AuthGroup)).Value,
-                  false,
+                  ModifierCategoryName.Default,
                   ResourceAccess.AllowAnonymous(),
                   new AppApiSuperUser(),
                   (n, a, u) => new WebAppApiActionCollection(n, a, u)
