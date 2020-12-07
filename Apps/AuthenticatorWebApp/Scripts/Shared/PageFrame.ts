@@ -1,9 +1,6 @@
-﻿import { HubAppApi } from './Api/HubAppApi';
-import { Command } from './Command';
-import { PageFrameViewModel } from './PageFrameViewModel';
-import { WebPage } from './WebPage';
+﻿import { PageFrameViewModel } from './PageFrameViewModel';
 
 export class PageFrame {
-    constructor(private readonly vm: PageFrameViewModel, private readonly hub: HubAppApi) {
+    constructor(private readonly vm: PageFrameViewModel) {
     }
 }

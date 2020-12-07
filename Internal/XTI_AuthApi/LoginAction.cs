@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web;
 using XTI_App.Api;
+using XTI_Core;
 using XTI_WebApp;
 using XTI_WebApp.Api;
 
@@ -21,7 +22,7 @@ namespace XTI_AuthApi
         {
             await auth.Authenticate(model.Credentials.UserName, model.Credentials.Password);
             anonClient.Load();
-            anonClient.Persist(0, anonClient.RequesterKey);
+            anonClient.Persist("", Timestamp.MinValue.Value, anonClient.RequesterKey);
             var startUrl = model.StartUrl;
             if (string.IsNullOrWhiteSpace(startUrl))
             {

@@ -1,13 +1,11 @@
-﻿import { BaseComponent } from "../AwaitableComponent";
-import { TextInput, PasswordInput } from "../TextInput";
-import { AsyncCommand } from "../Command";
-import { ColumnCss } from "../ColumnCss";
+﻿import { BaseComponent } from "../../Shared/AwaitableComponent";
+import { TextInput, PasswordInput } from "../../Shared/TextInput";
+import { AsyncCommand } from "../../Shared/Command";
+import { ColumnCss } from "../../Shared/ColumnCss";
 import { LoginComponentViewModel } from './LoginComponentViewModel';
-import { UrlBuilder } from '../UrlBuilder';
-import { container, singleton } from 'tsyringe';
-import { HubAppApi } from '../Api/HubAppApi';
-import { ModalErrorComponent } from '../Error/ModalErrorComponent';
-import { ErrorModel } from '../ErrorModel';
+import { UrlBuilder } from '../../Shared/UrlBuilder';
+import { container } from 'tsyringe';
+import { AuthenticatorAppApi } from '../Api/AuthenticatorAppApi';
 
 export class LoginResult {
     constructor(public readonly token: string) {
@@ -35,11 +33,11 @@ export class LoginComponent extends BaseComponent<LoginResult> {
                 UserName: this.userName.getValue(),
                 Password: this.password.getValue()
             };
-            let hub = container.resolve(HubAppApi);
-            await hub.Auth.Verify(cred);
+            let authenticator = container.resolve(AuthenticatorAppApi);
+            await authenticator.Auth.Verify(cred);
             this.alert.info('Opening page...');
             var form = <HTMLFormElement>document.createElement('form');
-            form.action = hub.Auth.Login.getUrl(null).getUrl();
+            form.action = authenticator.Auth.Login.getUrl(null).getUrl();
             form.style.position = 'absolute';
             form.style.top = '-100px';
             form.style.left = '-100px';

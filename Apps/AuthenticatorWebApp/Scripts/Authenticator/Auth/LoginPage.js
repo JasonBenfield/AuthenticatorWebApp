@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
+/// <reference path="../api/authenticatorentities.d.ts" />
 require("reflect-metadata");
 var LoginPageViewModel_1 = require("./LoginPageViewModel");
 var LoginComponent_1 = require("./LoginComponent");

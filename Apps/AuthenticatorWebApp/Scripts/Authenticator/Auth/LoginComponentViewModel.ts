@@ -1,9 +1,9 @@
-﻿import { BaseComponentViewModel } from "../AwaitableComponent";
-import { TextInputViewModel } from "../TextInput";
-import { ComponentTemplate } from "../ComponentTemplate";
-import { createCommandPillViewModel } from "../Templates/CommandPillTemplate";
+﻿import { BaseComponentViewModel } from "../../Shared/AwaitableComponent";
+import { TextInputViewModel } from "../../Shared/TextInput";
+import { ComponentTemplate } from "../../Shared/ComponentTemplate";
+import { createCommandPillViewModel } from "../../Shared/Templates/CommandPillTemplate";
 import * as template from './LoginComponent.html';
-import { OffscreenSubmitViewModel } from '../OffscreenSubmitViewModel';
+import { OffscreenSubmitViewModel } from '../../Shared/OffscreenSubmitViewModel';
 
 export class LoginComponentViewModel extends BaseComponentViewModel {
     constructor() {

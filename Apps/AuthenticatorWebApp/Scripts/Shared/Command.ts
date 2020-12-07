@@ -161,10 +161,10 @@ export class Command extends AsyncCommand {
         action: (context?: any) => void
     ) {
         super(vm, (c?: any) => {
-            return new Promise((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 try {
                     action(c);
-                    resolve();
+                    resolve({});
                 }
                 catch (e) {
                     reject(e);

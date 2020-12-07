@@ -1,8 +1,9 @@
 ﻿const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const entry = {
-    user: './Scripts/Authenticator/User/UserPage.ts',
-    login: './Scripts/Authenticator/Auth/LoginPage.ts'
+    user: './Scripts/Shared/User/UserPage.ts',
+    login: './Scripts/Authenticator/Auth/LoginPage.ts',
+    home: './Scripts/Authenticator/Home/MainPage.ts'
 };
 const exportModule = {
     rules: [

@@ -11,22 +11,24 @@ namespace AuthSetupConsoleApp
 {
     sealed class AuthSetupService : IHostedService
     {
+        private readonly IServiceScope scope;
         private readonly IHostApplicationLifetime lifetime;
         private readonly AppFactory appFactory;
         private readonly Clock clock;
 
         public AuthSetupService(IServiceProvider sp)
         {
-            lifetime = sp.GetService<IHostApplicationLifetime>();
-            appFactory = sp.GetService<AppFactory>();
-            clock = sp.GetService<Clock>();
+            scope = sp.CreateScope();
+            lifetime = scope.ServiceProvider.GetService<IHostApplicationLifetime>();
+            appFactory = scope.ServiceProvider.GetService<AppFactory>();
+            clock = scope.ServiceProvider.GetService<Clock>();
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             try
             {
-                await new AppSetup(appFactory).Run();
+                await new AllAppSetup(appFactory, clock).Run();
                 await new AuthSetup(appFactory, clock).Run();
             }
             catch (Exception ex)

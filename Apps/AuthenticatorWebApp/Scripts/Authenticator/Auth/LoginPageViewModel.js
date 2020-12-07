@@ -4,7 +4,7 @@ exports.LoginPageViewModel = void 0;
 var tslib_1 = require("tslib");
 var template = require("./LoginPage.html");
 var LoginComponentViewModel_1 = require("./LoginComponentViewModel");
-var PageViewModel_1 = require("../PageViewModel");
+var PageViewModel_1 = require("../../Shared/PageViewModel");
 var tsyringe_1 = require("tsyringe");
 var LoginPageViewModel = /** @class */ (function (_super) {
     tslib_1.__extends(LoginPageViewModel, _super);

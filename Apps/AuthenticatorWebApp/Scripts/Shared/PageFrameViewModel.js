@@ -5,9 +5,8 @@ var tslib_1 = require("tslib");
 var ModalErrorComponentViewModel_1 = require("./Error/ModalErrorComponentViewModel");
 var ko = require("knockout");
 var tsyringe_1 = require("tsyringe");
-var HubAppApi_1 = require("./Api/HubAppApi");
 var PageFrameViewModel = /** @class */ (function () {
-    function PageFrameViewModel(page, modalError, hub) {
+    function PageFrameViewModel(page, modalError, logoutUrl) {
         this.page = page;
         this.modalError = modalError;
         this.appTitle = ko.observable('');
@@ -27,13 +26,13 @@ var PageFrameViewModel = /** @class */ (function () {
         document.title = title;
         this.isAuthenticated(pageContext.IsAuthenticated);
         this.userName(pageContext.UserName);
-        this.logoutUrl(hub.Auth.Logout.getUrl({}).getUrl());
+        this.logoutUrl(logoutUrl.value());
     }
     PageFrameViewModel = tslib_1.__decorate([
         tsyringe_1.singleton(),
         tslib_1.__param(0, tsyringe_1.inject('PageVM')),
-        tslib_1.__metadata("design:paramtypes", [Object, ModalErrorComponentViewModel_1.ModalErrorComponentViewModel,
-            HubAppApi_1.HubAppApi])
+        tslib_1.__param(2, tsyringe_1.inject('LogoutUrl')),
+        tslib_1.__metadata("design:paramtypes", [Object, ModalErrorComponentViewModel_1.ModalErrorComponentViewModel, Object])
     ], PageFrameViewModel);
     return PageFrameViewModel;
 }());

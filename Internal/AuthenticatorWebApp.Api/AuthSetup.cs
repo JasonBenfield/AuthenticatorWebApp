@@ -18,15 +18,15 @@ namespace AuthenticatorWebApp.Api
 
         public async Task Run()
         {
-            var app = await appFactory.Apps().WebApp(AuthenticatorAppKey.Key);
+            var app = await appFactory.Apps().App(AuthenticatorAppKey.Key);
             const string title = "Authenticator";
-            if (app.Exists())
+            if (app.Key().Equals(AuthenticatorAppKey.Key))
             {
                 await app.SetTitle(title);
             }
             else
             {
-                app = await appFactory.Apps().AddApp(AuthenticatorAppKey.Key, AppType.Values.WebApp, title, clock.Now());
+                app = await appFactory.Apps().Add(AuthenticatorAppKey.Key, title, clock.Now());
             }
             var currentVersion = await app.CurrentVersion();
             if (!currentVersion.IsCurrent())

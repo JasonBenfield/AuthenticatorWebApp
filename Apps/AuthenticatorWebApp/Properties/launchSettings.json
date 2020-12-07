@@ -1,10 +1,10 @@
-﻿{
+{
   "iisSettings": {
-    "windowsAuthentication": false, 
-    "anonymousAuthentication": true, 
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:62372",
-      "sslPort": 44398
+      "applicationUrl": "http://development.guinevere.com:62372/Authenticator/Current",
+      "sslPort": 44303
     }
   },
   "profiles": {
@@ -18,10 +18,10 @@
     "AuthenticatorWebApp": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "https://development.guinevere.com:5001;http://development.guinevere.com:5000"
     }
   }
 }

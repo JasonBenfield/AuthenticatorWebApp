@@ -157,7 +157,7 @@ var Command = /** @class */ (function (_super) {
             return new Promise(function (resolve, reject) {
                 try {
                     action(c);
-                    resolve();
+                    resolve({});
                 }
                 catch (e) {
                     reject(e);
