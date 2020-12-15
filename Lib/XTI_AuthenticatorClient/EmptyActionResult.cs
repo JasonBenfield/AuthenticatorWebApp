@@ -1,5 +1,6 @@
 // Generated Code
 using System;
+using System.Collections.Generic;
 
 namespace XTI_AuthenticatorClient
 {

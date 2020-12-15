@@ -6,7 +6,6 @@ using NUnit.Framework;
 using System;
 using System.Threading.Tasks;
 using XTI_App;
-using XTI_App.EF;
 using XTI_AuthenticatorClient;
 using XTI_AuthenticatorClient.Extensions;
 using XTI_Configuration.Extensions;
@@ -78,7 +77,7 @@ namespace AuthenticatorWebApp.EndToEndTests
                     {
                         services.Configure<AppOptions>(hostContext.Configuration.GetSection(AppOptions.App));
                         services.AddAppDbContextForSqlServer(hostContext.Configuration);
-                        services.AddScoped<AppFactory, EfAppFactory>();
+                        services.AddScoped<AppFactory>();
                         services.AddScoped<Clock, UtcClock>();
                         services.AddHttpClient();
                         services.AddDataProtection();

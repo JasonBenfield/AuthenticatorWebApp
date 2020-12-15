@@ -38,6 +38,13 @@ function Auth-New-XtiVersion {
     $script:authConfig | New-XtiVersion @PsBoundParameters
 }
 
+function Auth-Xti-Merge {
+    param(
+        $CommitMessage
+    )
+    $script:authConfig | Xti-Merge @PsBoundParameters
+}
+
 function Auth-New-XtiPullRequest {
     param(
         $CommitMessage
@@ -62,7 +69,8 @@ function Xti-CopyShared {
 function Auth-Publish {
     param(
         [ValidateSet("Production", “Development", "Staging", "Test")]
-        [string] $EnvName="Production"
+        [string] $EnvName="Production",
+        [switch] $ExcludePackage
     )
     
     $ErrorActionPreference = "Stop"
@@ -88,8 +96,16 @@ function Auth-Publish {
 	    Xti-ResetMainDb -EnvName $EnvName
     }
 
+    $defaultVersion = ""
+    if($EnvName -eq "Production") {
+        $branch = Get-CurrentBranchname
+        Xti-BeginPublish -BranchName $branch
+        $releaseBranch = Parse-ReleaseBranch -BranchName $branch
+        $defaultVersion = $releaseBranch.VersionKey
+    }
+
     Write-Progress -Activity $activity -Status "Generating the api" -PercentComplete 30
-    Auth-GenerateApi -EnvName $EnvName -DisableClients
+    Auth-GenerateApi -EnvName $EnvName -DefaultVersion $defaultVersion
 
     Xti-CopyShared
 
@@ -101,17 +117,14 @@ function Auth-Publish {
 
     Write-Progress -Activity $activity -Status "Publishing website" -PercentComplete 80
     
-    if($EnvName -eq "Production") {
-        $branch = Get-CurrentBranchname
-        Xti-BeginPublish -BranchName $branch
-    }
     $script:authConfig | Xti-PublishWebApp -EnvName $EnvName
     if($EnvName -eq "Production") {
-        Auth-GenerateApi -EnvName $EnvName -DisableControllers
-        $script:authConfig | Xti-PublishPackage -DisableUpdateVersion -Prod
+        if(-not $ExcludePackage) {
+            $script:authConfig | Xti-PublishPackage -DisableUpdateVersion -Prod
+        }
         Xti-EndPublish -BranchName $branch
     }
-    else {
+    elseif(-not $ExcludePackage) {
         $script:authConfig | Xti-PublishPackage -DisableUpdateVersion
     }
 }
@@ -132,12 +145,11 @@ function Auth-GenerateApi {
     param (
         [ValidateSet("Development", "Production", "Staging", "Test")]
         [string] $EnvName,
-        [switch] $DisableClient,
-        [switch] $DisableControllers
+        [string] $DefaultVersion
     )
     $currentDir = (Get-Item .).FullName
     Set-Location Apps/AuthApiGeneratorApp
-    dotnet run --environment=$EnvName -- --Output:TsClient:Disable $DisableClient --Output:CsClient:Disable $DisableClient --Output:CsControllers:Disable $DisableControllers
+    dotnet run --environment=$EnvName --Output:DefaultVersion="`"$DefaultVersion`""
     Set-Location $currentDir
 }
 

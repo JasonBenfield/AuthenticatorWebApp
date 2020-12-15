@@ -17,7 +17,7 @@ var AuthenticatorAppApi = /** @class */ (function (_super) {
         _this.AuthApi = _this.addGroup(function (evts, resourceUrl) { return new AuthApiGroup_1.AuthApiGroup(evts, resourceUrl); });
         return _this;
     }
-    AuthenticatorAppApi.DefaultVersion = 'V56';
+    AuthenticatorAppApi.DefaultVersion = 'V1105';
     return AuthenticatorAppApi;
 }(AppApi_1.AppApi));
 exports.AuthenticatorAppApi = AuthenticatorAppApi;
