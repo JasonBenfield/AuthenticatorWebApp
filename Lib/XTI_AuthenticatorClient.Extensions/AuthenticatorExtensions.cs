@@ -51,7 +51,7 @@ namespace XTI_AuthenticatorClient.Extensions
                     versionKey
                 );
             });
-            services.AddScoped<IAuthClient, AuthenticatorAppClient>();
+            services.AddScoped<IAuthClient>(sp => sp.GetService<AuthenticatorAppClient>());
             services.AddScoped(sp =>
             {
                 var tokenFactory = sp.GetService<IXtiTokenFactory>();
