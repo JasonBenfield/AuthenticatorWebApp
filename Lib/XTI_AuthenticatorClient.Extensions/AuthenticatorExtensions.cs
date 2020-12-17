@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
@@ -15,12 +16,28 @@ namespace XTI_AuthenticatorClient.Extensions
         {
             services.AddHttpClient();
             services.Configure<AuthenticatorOptions>(configuration.GetSection(AuthenticatorOptions.Authenticator));
-            services.AddScoped<IAuthClient>(sp =>
+            services.AddSingleton(sp =>
+            {
+                var credentialsFactory = sp.GetService<SecretCredentialsFactory>();
+                var authOptions = sp.GetService<IOptions<AuthenticatorOptions>>().Value;
+                var credentials = credentialsFactory.Create(authOptions.CredentialKey);
+                return new XtiTokenFactory(credentials);
+            });
+            services.AddSingleton(sp =>
+            {
+                var cache = sp.GetService<IMemoryCache>();
+                var sourceFactory = sp.GetService<XtiTokenFactory>();
+                return new CachedXtiTokenFactory(cache, sourceFactory);
+            });
+            services.AddSingleton<IXtiTokenFactory>(sp =>
+            {
+                return sp.GetService<CachedXtiTokenFactory>();
+            });
+            services.AddScoped(sp =>
             {
                 var httpClientFactory = sp.GetService<IHttpClientFactory>();
                 var authOptions = sp.GetService<IOptions<AuthenticatorOptions>>().Value;
-                var credentialsFactory = sp.GetService<SecretCredentialsFactory>();
-                var credentials = credentialsFactory.Create(authOptions.CredentialKey);
+                var tokenFactory = sp.GetService<IXtiTokenFactory>();
                 var appOptions = sp.GetService<IOptions<AppOptions>>().Value;
                 var hostEnv = sp.GetService<IHostEnvironment>();
                 var versionKey = hostEnv.IsProduction()
@@ -29,18 +46,17 @@ namespace XTI_AuthenticatorClient.Extensions
                 return new AuthenticatorAppClient
                 (
                     httpClientFactory,
-                    credentials,
+                    tokenFactory,
                     appOptions.BaseUrl,
                     versionKey
                 );
             });
+            services.AddScoped<IAuthClient, AuthenticatorAppClient>();
             services.AddScoped(sp =>
             {
+                var tokenFactory = sp.GetService<IXtiTokenFactory>();
                 var authClient = sp.GetService<IAuthClient>();
-                var authOptions = sp.GetService<IOptions<AuthenticatorOptions>>().Value;
-                var credentialsFactory = sp.GetService<SecretCredentialsFactory>();
-                var credentials = credentialsFactory.Create(authOptions.CredentialKey);
-                return new XtiToken(authClient, credentials);
+                return tokenFactory.Create(authClient);
             });
         }
     }

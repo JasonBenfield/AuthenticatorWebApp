@@ -13,7 +13,8 @@ function Auth-New-XtiIssue {
         [Parameter(Mandatory)]
         [string] $IssueTitle,
         $Labels = @(),
-        [string] $Body = ""
+        [string] $Body = "",
+        [switch] $Start
     )
     $script:authConfig | New-XtiIssue @PsBoundParameters
 }
@@ -30,8 +31,6 @@ function Auth-Xti-StartIssue {
 
 function Auth-New-XtiVersion {
     param(
-        [ValidateSet(“Development", "Production", "Staging", "Test")]
-        $EnvName = "Production",
         [ValidateSet(“major”, "minor", "patch")]
         $VersionType = "minor"
     )
@@ -95,6 +94,7 @@ function Auth-Publish {
         Write-Progress -Activity $activity -Status "Resetting the app database" -PercentComplete 20
 	    Xti-ResetMainDb -EnvName $EnvName
     }
+    Auth-Setup -EnvName $EnvName
 
     $defaultVersion = ""
     if($EnvName -eq "Production") {
@@ -147,10 +147,7 @@ function Auth-GenerateApi {
         [string] $EnvName,
         [string] $DefaultVersion
     )
-    $currentDir = (Get-Item .).FullName
-    Set-Location Apps/AuthApiGeneratorApp
-    dotnet run --environment=$EnvName --Output:DefaultVersion="`"$DefaultVersion`""
-    Set-Location $currentDir
+    dotnet run --project Apps/AuthApiGeneratorApp --environment=$EnvName --Output:DefaultVersion="`"$DefaultVersion`""
 }
 
 function Auth-Setup {
@@ -158,12 +155,7 @@ function Auth-Setup {
         [ValidateSet("Production", "Development", "Staging", "Test")]
         [string] $EnvName="Development"
     )
-
-    $currentDir = (Get-Item .).FullName
-    Set-Location Apps/AuthSetupConsoleApp
-    dotnet run --no-launch-profile --environment=$EnvName
-    Set-Location $currentDir
-
+    dotnet run --project Apps/AuthSetupConsoleApp --no-launch-profile --environment=$EnvName
     if( $LASTEXITCODE -ne 0 ) {
         Throw "Auth setup failed"
     }
