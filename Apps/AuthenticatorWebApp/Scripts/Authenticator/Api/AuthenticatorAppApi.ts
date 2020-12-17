@@ -7,7 +7,7 @@ import { AuthGroup } from "./AuthGroup";
 import { AuthApiGroup } from "./AuthApiGroup";
 
 export class AuthenticatorAppApi extends AppApi {
-	public static readonly DefaultVersion = 'V1111';
+	public static readonly DefaultVersion = 'V1117';
 
 	constructor(events: AppApiEvents, baseUrl: string, version: string = '') {
 		super(events, baseUrl, 'Authenticator', version || AuthenticatorAppApi.DefaultVersion);

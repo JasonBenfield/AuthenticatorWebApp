@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using XTI_App;
-using XTI_AuthenticatorClient;
 using XTI_AuthenticatorClient.Extensions;
 using XTI_Configuration.Extensions;
 using XTI_Core;
@@ -108,10 +107,10 @@ namespace AuthenticatorWebApp.EndToEndTests
         {
             public TestInput(IServiceProvider sp)
             {
-                AuthClient = sp.GetService<AuthenticatorAppClient>();
+                AuthClient = sp.GetService<IAuthClient>();
                 AppFactory = sp.GetService<AppFactory>();
             }
-            public AuthenticatorAppClient AuthClient { get; }
+            public IAuthClient AuthClient { get; }
             public AppFactory AppFactory { get; }
         }
     }
