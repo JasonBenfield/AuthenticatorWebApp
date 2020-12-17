@@ -1,11 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using MainDB.Extensions;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Threading.Tasks;
 using XTI_App;
-using XTI_App.EF;
-using XTI_App.Extensions;
 using XTI_Configuration.Extensions;
 using XTI_Core;
+using XTI_Secrets.Extensions;
 
 namespace AuthSetupConsoleApp
 {
@@ -20,8 +20,9 @@ namespace AuthSetupConsoleApp
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
+                    services.AddXtiDataProtection();
                     services.AddAppDbContextForSqlServer(hostContext.Configuration);
-                    services.AddScoped<AppFactory, EfAppFactory>();
+                    services.AddScoped<AppFactory>();
                     services.AddScoped<Clock, UtcClock>();
                     services.AddHostedService<AuthSetupService>();
                 })
