@@ -123,6 +123,7 @@ function Auth-Publish {
             $script:authConfig | Xti-PublishPackage -DisableUpdateVersion -Prod
         }
         Xti-EndPublish -BranchName $branch
+        $script:authConfig | Xti-Merge
     }
     elseif(-not $ExcludePackage) {
         $script:authConfig | Xti-PublishPackage -DisableUpdateVersion
