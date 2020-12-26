@@ -21,24 +21,8 @@ namespace AuthenticatorWebApp.Extensions
             services.AddScoped<AccessForLogin, CookieAccess>();
             services.AddScoped<AuthGroupFactory>();
             services.AddSingleton(_ => AuthenticatorAppKey.Key);
-            services.AddScoped(sp =>
-            {
-                var appKey = sp.GetService<AppKey>();
-                var appApiUser = sp.GetService<IAppApiUser>();
-                var xtiPath = sp.GetService<XtiPath>();
-                var authGroupFactory = sp.GetService<AuthGroupFactory>();
-                return new AuthenticatorAppApi
-                (
-                    appKey,
-                    xtiPath.Version,
-                    appApiUser,
-                    authGroupFactory
-                );
-            });
-            services.AddScoped<AppApi, AuthenticatorAppApi>(sp =>
-            {
-                return sp.GetService<AuthenticatorAppApi>();
-            });
+            services.AddScoped<AuthenticatorAppApi>();
+            services.AddScoped<AppApi, AuthenticatorAppApi>(sp => sp.GetService<AuthenticatorAppApi>());
             services
                 .AddMvc()
                 .AddJsonOptions(options =>

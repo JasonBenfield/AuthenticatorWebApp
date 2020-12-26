@@ -39,8 +39,4 @@ var ModalErrorComponent = /** @class */ (function () {
     return ModalErrorComponent;
 }());
 exports.ModalErrorComponent = ModalErrorComponent;
-//export let modalError: ModalErrorComponent; 
-//export function setModalError(_modalError: ModalErrorComponent) {
-//    modalError = _modalError;
-//}
 //# sourceMappingURL=ModalErrorComponent.js.map

@@ -3,8 +3,8 @@ import * as ko from 'knockout';
 
 export class PageViewModel {
     constructor(template: any) {
-        new ComponentTemplate(this.template(), template).register();
+        new ComponentTemplate(this.componentName(), template).register();
     }
 
-    readonly template = ko.observable('page-body');
+    readonly componentName = ko.observable('page-body');
 }

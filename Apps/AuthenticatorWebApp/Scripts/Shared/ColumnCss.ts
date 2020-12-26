@@ -6,6 +6,7 @@ export interface ColumnCssOptions {
     md?: number;
     lg?: number;
     xl?: number;
+    autosize?: boolean;
 }
 
 export class ColumnCss {
@@ -15,7 +16,10 @@ export class ColumnCss {
                 this.cssClass.addName(this.getCssClass('xs', options));
             }
         }
-        else if (options) {
+        else {
+            if (!options) {
+                options = {};
+            }
             if (options.xs >= 0) {
                 this.cssClass.addName(this.getCssClass('xs', options.xs));
             }
@@ -30,6 +34,14 @@ export class ColumnCss {
             }
             if (options.xl >= 0) {
                 this.cssClass.addName(this.getCssClass('xl', options.xs));
+            }
+            if (!options.xs && !options.sm && !options.md && !options.lg && !options.xl) {
+                if (options && options.autosize) {
+                    this.cssClass.addName('col-auto');
+                }
+                else {
+                    this.cssClass.addName('col');
+                }
             }
         }
     }

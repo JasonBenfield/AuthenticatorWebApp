@@ -4,7 +4,7 @@ import { FaIconViewModel, FaIcon } from './FaIcon';
 import { ContextualClass, ContextualClassViewModel } from './ContextualClass';
 
 export class CommandViewModel {
-    readonly template = ko.observable('');
+    readonly componentName = ko.observable('');
     readonly isVisible = ko.observable(true);
     readonly isEnabled = ko.observable(true);
     readonly icon = new FaIconViewModel();

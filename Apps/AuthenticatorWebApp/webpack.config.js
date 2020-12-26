@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const entry = {
     user: './Scripts/Shared/User/UserPage.ts',
     login: './Scripts/Authenticator/Auth/LoginPage.ts',
-    home: './Scripts/Authenticator/Home/MainPage.ts'
+    home: './Scripts/Internal/Home/MainPage.ts'
 };
 const exportModule = {
     rules: [
@@ -15,9 +15,29 @@ const exportModule = {
         {
             test: /\.s[ac]ss$/i,
             use: [
-                'style-loader',
-                'css-loader',
+                {
+                    loader: 'file-loader',
+                    options: {
+                        name: '../../styles/css/[name].css',
+                    },
+                },
                 'sass-loader',
+            ]
+        },
+        {
+            test: /\.css$/i,
+            use: [
+                {
+                    loader: 'file-loader',
+                    options: {
+                        name: (resourcePath, resourceQuery) => {
+                            if (/@fortawesome[\\\/]fontawesome-free/.test(resourcePath)) {
+                                return '../../styles/css/fontawesome/[name].css';
+                            }
+                            return '../../styles/css/[name].css';
+                        }
+                    }
+                }
             ]
         },
         {
@@ -30,13 +50,23 @@ const exportModule = {
                     }
                 }
             }]
+        },
+        {
+            test: /\.(svg|eot|woff|woff2|ttf)$/,
+            use: [{
+                loader: 'file-loader',
+                options: {
+                    name: '[name].[ext]',
+                    outputPath: '../../styles/css/webfonts'
+                }
+            }]
         }
     ]
 };
 const outputFilename = '[name].js';
 const resolve = {
     alias: {
-        xtistart: path.resolve(__dirname, 'Scripts/Authenticator/Startup.js')
+        xtistart: path.resolve(__dirname, 'Scripts/Internal/Startup.js')
     }
 };
 const plugins = [

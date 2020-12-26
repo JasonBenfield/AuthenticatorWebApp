@@ -12,17 +12,15 @@ namespace AuthenticatorWebApp.ApiControllers
     [Authorize]
     public class UserController : Controller
     {
-        public UserController(AuthenticatorAppApi api, XtiPath xtiPath)
+        public UserController(AuthenticatorAppApi api)
         {
             this.api = api;
-            this.xtiPath = xtiPath;
         }
 
         private readonly AuthenticatorAppApi api;
-        private readonly XtiPath xtiPath;
         public async Task<IActionResult> Index(UserStartRequest model)
         {
-            var result = await api.Group("User").Action<UserStartRequest, AppActionViewResult>("Index").Execute(xtiPath.Modifier, model);
+            var result = await api.Group("User").Action<UserStartRequest, AppActionViewResult>("Index").Execute(model);
             return View(result.Data.ViewName);
         }
     }

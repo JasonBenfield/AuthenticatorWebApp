@@ -7,13 +7,13 @@ import { ColumnCss } from './ColumnCss';
 
 export class TextInputViewModel {
     constructor(caption?: string) {
-        new ComponentTemplate(this.template(), template).register();
+        new ComponentTemplate(this.componentName(), template).register();
         if (caption) {
             this.caption(caption);
         }
     }
 
-    readonly template = ko.observable('text-input');
+    readonly componentName = ko.observable('text-input');
     readonly type = ko.observable('');
     readonly caption = ko.observable('');
     readonly captionCss = ko.observable('');

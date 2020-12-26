@@ -1,15 +1,28 @@
 ﻿<div class="d-flex flex-column vh-100">
-    <div class="bg-primary">
-        <h1>
-            <span data-bind="text: appTitle"></span> <small data-bind="text: pageTitle"></small>
-        </h1>
-        <!-- ko if: isAuthenticated -->
-        <div data-bind="text: userName"></div>
-        <a data-bind="attr: { href: logoutUrl }" class="btn btn-primary">Logout</a>
-        <!-- /ko -->
+    <div class="bg-primary container-fluid">
+        <div class="row">
+            <div class="col">
+                <h1>
+                    <!-- ko text: appTitle --><!-- /ko -->
+                    <small data-bind="text: pageTitle"></small>
+                </h1>
+            </div>
+            <div class="col-auto align-self-center">
+                <!-- ko if: isAuthenticated -->
+                <div class="dropdown">
+                    <button id="userDropdownButton" data-bind="dropdown: $data" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-toggle="dropdown" aria-expanded="false">
+                        <span class=""><i class="fas fa-user"></i></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdownButton">
+                        <li><span data-bind="text: userName" class="dropdown-item-text"></span></li>
+                        <li><a data-bind="attr: { href: logoutUrl }" class="dropdown-item">Logout</a></li>
+                    </ul>
+                </div>
+                <!-- /ko -->
+            </div>
+        </div>
     </div>
-    <div class="flex-fill">
-        <!-- ko component: { name: page.template, params: page } --><!-- /ko -->
+        <!-- ko component: { name: page.componentName, params: page } --><!-- /ko -->
     </div>
 </div>
-<!-- ko component: { name: modalError.template, params: modalError } --><!-- /ko -->
+<!-- ko component: { name: modalError.componentName, params: modalError } --><!-- /ko -->

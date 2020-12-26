@@ -16,7 +16,7 @@ exports.CommandPillTemplate = CommandPillTemplate;
 function createCommandPillViewModel() {
     var commandVM = new Command_1.CommandViewModel();
     new CommandPillTemplate().register();
-    commandVM.template('command-pill');
+    commandVM.componentName('command-pill');
     return commandVM;
 }
 exports.createCommandPillViewModel = createCommandPillViewModel;

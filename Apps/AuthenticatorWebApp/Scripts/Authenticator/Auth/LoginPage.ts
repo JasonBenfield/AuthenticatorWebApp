@@ -4,21 +4,22 @@ import { LoginPageViewModel } from "./LoginPageViewModel";
 import { LoginComponent, LoginResult } from "./LoginComponent";
 import { startup } from 'xtistart';
 import { singleton } from 'tsyringe';
+import { AuthenticatorAppApi } from '../Api/AuthenticatorAppApi';
 
 @singleton()
 class LoginPage
 {
-    constructor(private readonly vm: LoginPageViewModel) {
+    constructor(
+        private readonly vm: LoginPageViewModel,
+        private readonly authenticator: AuthenticatorAppApi
+    ) {
         this.activateLoginComponent();
     }
 
-    private readonly loginComponent = new LoginComponent(this.vm.loginComponent);
+    private readonly loginComponent = new LoginComponent(this.vm.loginComponent, this.authenticator);
 
-    private async activateLoginComponent() {
-        let result = await this.loginComponent.activate();
-        if (result instanceof LoginResult) {
-            alert(`Login Component Result: ${result.token}`);
-        }
+    private activateLoginComponent() {
+        return this.loginComponent.start();
     }
 }
 startup(LoginPageViewModel, LoginPage);

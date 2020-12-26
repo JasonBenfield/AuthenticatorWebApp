@@ -20,13 +20,11 @@ namespace AuthenticatorWebApp
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            using (var scope = sp.CreateScope())
-            {
-                var appFactory = scope.ServiceProvider.GetService<AppFactory>();
-                var clock = scope.ServiceProvider.GetService<Clock>();
-                await new AllAppSetup(appFactory, clock).Run();
-                await new AuthSetup(appFactory, clock).Run();
-            }
+            using var scope = sp.CreateScope();
+            var appFactory = scope.ServiceProvider.GetService<AppFactory>();
+            var clock = scope.ServiceProvider.GetService<Clock>();
+            await new AuthSetup(appFactory, clock).Run();
+            await StopAsync(cancellationToken);
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

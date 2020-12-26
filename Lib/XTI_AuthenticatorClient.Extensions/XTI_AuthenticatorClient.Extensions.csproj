@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
-    <PackageReference Include="XTI_App" Version="1.6.5" />
+    <PackageReference Include="XTI_App" Version="1.6.6-dev201224083526788" />
     <PackageReference Include="XTI_Secrets" Version="1.7.3" />
   </ItemGroup>
 

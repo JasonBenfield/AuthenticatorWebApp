@@ -19,6 +19,7 @@ namespace AuthenticatorWebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddResponseCaching();
             services.AddAuthenticator(Configuration);
             services.ConfigureXtiCookieAndTokenAuthentication(Configuration);
             services.AddHostedService<StartupHostedService>();
@@ -40,6 +41,7 @@ namespace AuthenticatorWebApp
 
             app.UseRouting();
 
+            app.UseResponseCaching();
             app.UseAuthentication();
             app.UseAuthorization();
 

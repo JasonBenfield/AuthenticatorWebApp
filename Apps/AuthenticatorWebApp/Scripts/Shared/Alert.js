@@ -10,7 +10,7 @@ var ComponentTemplate_1 = require("./ComponentTemplate");
 var AlertViewModel = /** @class */ (function () {
     function AlertViewModel() {
         var _this = this;
-        this.template = ko.observable('alert');
+        this.componentName = ko.observable('alert');
         this.contextualClass = new ContextualClass_1.ContextualClassViewModel();
         this.message = ko.observable('');
         this.hasMessage = ko.pureComputed(function () { return Boolean(_this.message()); });
@@ -34,7 +34,7 @@ var AlertViewModel = /** @class */ (function () {
             var isDanger = _this.contextualClass.isDanger();
             return hasMessage && isDanger;
         });
-        new ComponentTemplate_1.ComponentTemplate(this.template(), template).register();
+        new ComponentTemplate_1.ComponentTemplate(this.componentName(), template).register();
     }
     return AlertViewModel;
 }());

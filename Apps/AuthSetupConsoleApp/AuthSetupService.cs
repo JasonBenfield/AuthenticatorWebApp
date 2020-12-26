@@ -28,7 +28,6 @@ namespace AuthSetupConsoleApp
         {
             try
             {
-                await new AllAppSetup(appFactory, clock).Run();
                 await new AuthSetup(appFactory, clock).Run();
             }
             catch (Exception ex)

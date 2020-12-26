@@ -9,7 +9,7 @@ var ComponentTemplate_1 = require("./ComponentTemplate");
 var CssClass_1 = require("./CssClass");
 var TextInputViewModel = /** @class */ (function () {
     function TextInputViewModel(caption) {
-        this.template = ko.observable('text-input');
+        this.componentName = ko.observable('text-input');
         this.type = ko.observable('');
         this.caption = ko.observable('');
         this.captionCss = ko.observable('');
@@ -22,7 +22,7 @@ var TextInputViewModel = /** @class */ (function () {
         this.name = ko.observable(null);
         this._valueChanged = new Events_1.DefaultEvent(this);
         this.valueChanged = new Events_1.DefaultEventHandler(this._valueChanged);
-        new ComponentTemplate_1.ComponentTemplate(this.template(), template).register();
+        new ComponentTemplate_1.ComponentTemplate(this.componentName(), template).register();
         if (caption) {
             this.caption(caption);
         }

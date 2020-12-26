@@ -17,12 +17,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-    <PackageReference Include="XTI_ApiGeneratorApp.Extensions" Version="1.3.7-dev201216073138689" />
-    <PackageReference Include="XTI_Configuration.Extensions" Version="1.8.2" />
+    <PackageReference Include="XTI_ApiGeneratorApp.Extensions" Version="1.3.7-dev201224122101976" />
+    <PackageReference Include="XTI_Configuration.Extensions" Version="1.8.3-dev201219094947885" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Internal\AuthenticatorWebApp.ApiTemplate\AuthenticatorWebApp.ApiTemplate.csproj" />
+    <ProjectReference Include="..\..\Internal\AuthenticatorWebApp.Api\AuthenticatorWebApp.Api.csproj" />
   </ItemGroup>
 
 </Project>

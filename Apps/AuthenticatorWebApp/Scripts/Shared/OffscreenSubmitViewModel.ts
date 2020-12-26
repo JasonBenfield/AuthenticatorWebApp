@@ -4,7 +4,7 @@ import * as template from './Templates/OffscreenSubmit.html';
 
 export class OffscreenSubmitViewModel {
     constructor() {
-        new ComponentTemplate(this.template(), template).register();
+        new ComponentTemplate(this.componentName(), template).register();
     }
-    readonly template = ko.observable('offscreen-submit');
+    readonly componentName = ko.observable('offscreen-submit');
 }
