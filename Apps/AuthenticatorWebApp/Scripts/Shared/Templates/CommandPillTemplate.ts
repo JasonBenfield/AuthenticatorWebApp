@@ -11,6 +11,6 @@ export class CommandPillTemplate extends ComponentTemplate {
 export function createCommandPillViewModel() {
     let commandVM = new CommandViewModel();
     new CommandPillTemplate().register();
-    commandVM.template('command-pill');
+    commandVM.componentName('command-pill');
     return commandVM;
 }

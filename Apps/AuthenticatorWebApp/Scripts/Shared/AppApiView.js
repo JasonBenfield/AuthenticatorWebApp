@@ -8,8 +8,15 @@ var AppApiView = /** @class */ (function () {
         this.url = resourceUrl.withAction(actionName).url.getUrl();
     }
     AppApiView.prototype.getUrl = function (data) {
+        var model;
+        if (typeof data === 'string' || typeof data === 'number' || data instanceof Date) {
+            model = { model: data };
+        }
+        else {
+            model = data;
+        }
         var urlBuilder = new UrlBuilder_1.UrlBuilder(this.url);
-        urlBuilder.addQueryFromObject(data);
+        urlBuilder.addQueryFromObject(model);
         return urlBuilder;
     };
     AppApiView.prototype.open = function (data) {

@@ -8,7 +8,7 @@ var FaIcon_1 = require("./FaIcon");
 var ContextualClass_1 = require("./ContextualClass");
 var CommandViewModel = /** @class */ (function () {
     function CommandViewModel() {
-        this.template = ko.observable('');
+        this.componentName = ko.observable('');
         this.isVisible = ko.observable(true);
         this.isEnabled = ko.observable(true);
         this.icon = new FaIcon_1.FaIconViewModel();

@@ -13,18 +13,16 @@ namespace AuthenticatorWebApp.ApiControllers
     [AllowAnonymous]
     public class AuthApiController : Controller
     {
-        public AuthApiController(AuthenticatorAppApi api, XtiPath xtiPath)
+        public AuthApiController(AuthenticatorAppApi api)
         {
             this.api = api;
-            this.xtiPath = xtiPath;
         }
 
         private readonly AuthenticatorAppApi api;
-        private readonly XtiPath xtiPath;
         [HttpPost]
         public Task<ResultContainer<LoginResult>> Authenticate([FromBody] LoginCredentials model)
         {
-            return api.Group("AuthApi").Action<LoginCredentials, LoginResult>("Authenticate").Execute(xtiPath.Modifier, model);
+            return api.Group("AuthApi").Action<LoginCredentials, LoginResult>("Authenticate").Execute(model);
         }
     }
 }

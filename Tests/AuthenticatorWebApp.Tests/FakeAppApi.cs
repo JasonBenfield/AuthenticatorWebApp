@@ -48,9 +48,7 @@ namespace AuthenticatorWebApp.Tests
                 appFactory,
                 clock,
                 template,
-                "",
-                FakeAppRoles.Instance.Values(),
-                new[] { new ModifierCategoryName("Department") }
+                ""
             );
             await setup.Run();
             App = await appFactory.Apps().App(template.AppKey);
@@ -68,18 +66,17 @@ namespace AuthenticatorWebApp.Tests
     {
         public AppApiTemplate Create()
         {
-            var api = new FakeAppApi(FakeAppKey.AppKey, AppVersionKey.Current, new AppApiSuperUser());
+            var api = new FakeAppApi(FakeAppKey.AppKey, new AppApiSuperUser());
             return api.Template();
         }
     }
     public sealed class FakeAppApi : WebAppApi
     {
 
-        public FakeAppApi(AppKey appKey, AppVersionKey versionKey, IAppApiUser user)
+        public FakeAppApi(AppKey appKey, IAppApiUser user)
             : base
             (
                 appKey,
-                versionKey,
                 user,
                 ResourceAccess.AllowAuthenticated()
                     .WithAllowed(FakeAppRoles.Instance.Admin)

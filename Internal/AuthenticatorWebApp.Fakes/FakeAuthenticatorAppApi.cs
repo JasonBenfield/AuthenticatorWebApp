@@ -25,7 +25,6 @@ namespace AuthenticatorWebApp.Fakes
             var api = new AuthenticatorAppApi
             (
                 AuthenticatorAppKey.Key,
-                AppVersionKey.Current,
                 new AppApiSuperUser(),
                 authGroupFactory
             );

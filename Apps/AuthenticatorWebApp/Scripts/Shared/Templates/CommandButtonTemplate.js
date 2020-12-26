@@ -16,7 +16,7 @@ exports.CommandButtonTemplate = CommandButtonTemplate;
 function createCommandButtonViewModel() {
     var commandVM = new Command_1.CommandViewModel();
     new CommandButtonTemplate().register();
-    commandVM.template('command-button');
+    commandVM.componentName('command-button');
     return commandVM;
 }
 exports.createCommandButtonViewModel = createCommandButtonViewModel;

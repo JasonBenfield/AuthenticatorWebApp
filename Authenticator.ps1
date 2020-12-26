@@ -145,10 +145,13 @@ function Auth-New-XtiUser {
 function Auth-GenerateApi {
     param (
         [ValidateSet("Development", "Production", "Staging", "Test")]
-        [string] $EnvName,
+        [string] $EnvName="Production",
         [string] $DefaultVersion
     )
     dotnet run --project Apps/AuthApiGeneratorApp --environment=$EnvName --Output:DefaultVersion="`"$DefaultVersion`""
+    if( $LASTEXITCODE -ne 0 ) {
+        Throw "Auth api generator failed"
+    }
 }
 
 function Auth-Setup {

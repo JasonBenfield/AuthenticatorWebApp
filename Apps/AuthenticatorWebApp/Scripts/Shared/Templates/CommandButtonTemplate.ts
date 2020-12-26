@@ -11,6 +11,6 @@ export class CommandButtonTemplate extends ComponentTemplate {
 export function createCommandButtonViewModel() {
     let commandVM = new CommandViewModel();
     new CommandButtonTemplate().register();
-    commandVM.template('command-button');
+    commandVM.componentName('command-button');
     return commandVM;
 }

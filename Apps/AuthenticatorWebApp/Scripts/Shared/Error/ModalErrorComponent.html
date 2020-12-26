@@ -20,7 +20,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <!-- ko component: { name: 'command-button', params: okCommand }--><!-- /ko -->
+                    <!-- ko with: okCommand -->
+                    <!-- ko component: { name: componentName, params: $data }--><!-- /ko -->
+                    <!-- /ko -->
                 </div>
             </div>
         </div>

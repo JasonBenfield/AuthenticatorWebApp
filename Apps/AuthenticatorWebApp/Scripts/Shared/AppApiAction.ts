@@ -19,7 +19,14 @@ export class AppApiAction<TArgs,TResult> {
     private readonly resourceUrl: AppResourceUrl;
 
     async execute(data: TArgs, errorOptions: IActionErrorOptions) {
-        let jsonText = new JsonText(data).toString();
+        let model: any;
+        if (typeof data === 'string' || typeof data === 'number' || data instanceof Date) {
+            model = { model: data };
+        }
+        else {
+            model = data;
+        }
+        let jsonText = new JsonText(model).toString();
         let postResult = await new HttpClient().post(this.resourceUrl.url.getUrl(), jsonText);
         let result: TResult;
         let apiError: AppApiError;

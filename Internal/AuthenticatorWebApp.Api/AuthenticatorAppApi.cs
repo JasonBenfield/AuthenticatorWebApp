@@ -10,11 +10,10 @@ namespace AuthenticatorWebApp.Api
         public AuthenticatorAppApi
         (
             AppKey appKey,
-            AppVersionKey versionKey,
             IAppApiUser user,
             AuthGroupFactory authGroupFactory
         )
-            : base(appKey, versionKey, user, ResourceAccess.AllowAnonymous())
+            : base(appKey, user, ResourceAccess.AllowAnonymous())
         {
             Auth = AddGroup((u) => new AuthGroup(this, authGroupFactory));
             AuthApi = AddGroup((u) => new AuthApiGroup(this, authGroupFactory));

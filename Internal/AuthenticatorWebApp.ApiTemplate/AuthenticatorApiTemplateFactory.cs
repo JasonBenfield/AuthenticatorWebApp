@@ -1,7 +1,6 @@
 ﻿using AuthenticatorWebApp.Api;
 using AuthenticatorWebApp.Core;
 using Microsoft.Extensions.DependencyInjection;
-using XTI_App;
 using XTI_App.Api;
 using XTI_AuthApi;
 
@@ -16,7 +15,6 @@ namespace AuthenticatorWebApp.ApiTemplate
             var api = new AuthenticatorAppApi
             (
                 AuthenticatorAppKey.Key,
-                AppVersionKey.Current,
                 new AppApiSuperUser(),
                 new AuthGroupFactory(sp)
             );

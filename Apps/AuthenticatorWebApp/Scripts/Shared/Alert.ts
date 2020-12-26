@@ -6,10 +6,10 @@ import { ComponentTemplate } from './ComponentTemplate';
 
 export class AlertViewModel {
     constructor() {
-        new ComponentTemplate(this.template(), template).register();
+        new ComponentTemplate(this.componentName(), template).register();
     }
 
-    readonly template = ko.observable('alert');
+    readonly componentName = ko.observable('alert');
 
     readonly contextualClass = new ContextualClassViewModel();
 

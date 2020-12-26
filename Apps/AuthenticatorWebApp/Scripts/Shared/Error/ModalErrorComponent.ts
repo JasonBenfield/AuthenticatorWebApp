@@ -36,9 +36,3 @@ export class ModalErrorComponent {
         this.vm.modalOptions.command('hide');
     }
 }
-
-//export let modalError: ModalErrorComponent; 
-
-//export function setModalError(_modalError: ModalErrorComponent) {
-//    modalError = _modalError;
-//}

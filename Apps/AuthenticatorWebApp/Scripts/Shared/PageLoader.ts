@@ -1,6 +1,22 @@
 ﻿import * as ko from 'knockout';
 import * as template from './Templates/PageFrame.html';
 import './Styles/default.scss';
+import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
+import "@fortawesome/fontawesome-free/webfonts/fa-brands-400.eot";
+import "@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg";
+import "@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf";
+import "@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff";
+import "@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2";
+import "@fortawesome/fontawesome-free/webfonts/fa-regular-400.eot";
+import "@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg";
+import "@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf";
+import "@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff";
+import "@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2";
+import "@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot";
+import "@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg";
+import "@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf";
+import "@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff";
+import "@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2";
 import { ComponentTemplate } from './ComponentTemplate';
 import 'tslib';
 import { SubmitBindingHandler } from './SubmitBindingHandler';
@@ -9,9 +25,15 @@ import { container } from 'tsyringe';
 import { PageFrameViewModel } from './PageFrameViewModel';
 import { UrlBuilder } from './UrlBuilder';
 import { ConsoleLog } from './ConsoleLog';
+import { Dropdown } from 'bootstrap';
+import { DropdownBindingHandler } from './DropdownBindingHandler';
 
 export class PageLoader {
     load() {
+        let dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
+        dropdownElementList.map((dropdownToggleEl) => {
+            return new Dropdown(dropdownToggleEl);
+        });
         let defaultConfigLoader = {
             getConfig: (name: string, callback) => {
                 if (name.indexOf('/') > -1) {
@@ -49,6 +71,7 @@ export class PageLoader {
         ko.options.deferUpdates = true;
         ko.bindingHandlers.submit = new SubmitBindingHandler();
         ko.bindingHandlers.modal = new ModalBindingHandler();
+        ko.bindingHandlers.dropdown = new DropdownBindingHandler();
         let page = container.resolve('Page');
         let pageFrameVM = container.resolve(PageFrameViewModel);
         ko.applyBindings(pageFrameVM);

@@ -13,8 +13,15 @@ export class AppApiView<TArgs> {
     private readonly url: string;
 
     getUrl(data: TArgs) {
+        let model: any;
+        if (typeof data === 'string' || typeof data === 'number' || data instanceof Date) {
+            model = { model: data };
+        }
+        else {
+            model = data;
+        }
         let urlBuilder = new UrlBuilder(this.url);
-        urlBuilder.addQueryFromObject(data);
+        urlBuilder.addQueryFromObject(model);
         return urlBuilder;
     }
 

@@ -5,8 +5,8 @@ var ComponentTemplate_1 = require("./ComponentTemplate");
 var ko = require("knockout");
 var PageViewModel = /** @class */ (function () {
     function PageViewModel(template) {
-        this.template = ko.observable('page-body');
-        new ComponentTemplate_1.ComponentTemplate(this.template(), template).register();
+        this.componentName = ko.observable('page-body');
+        new ComponentTemplate_1.ComponentTemplate(this.componentName(), template).register();
     }
     return PageViewModel;
 }());

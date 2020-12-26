@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BaseComponent = exports.AwaitableComponent = exports.ComponentDeactivatedResult = exports.BaseComponentViewModel = exports.AwaitableComponentViewModel = void 0;
+exports.BaseComponent = exports.AwaitableComponent = exports.Awaitable = exports.ComponentDeactivatedResult = exports.BaseComponentViewModel = exports.AwaitableComponentViewModel = void 0;
 var Alert_1 = require("./Alert");
 var Events_1 = require("./Events");
 var ko = require("knockout");
@@ -35,6 +35,29 @@ var ComponentDeactivatedResult = /** @class */ (function () {
     return ComponentDeactivatedResult;
 }());
 exports.ComponentDeactivatedResult = ComponentDeactivatedResult;
+var Awaitable = /** @class */ (function () {
+    function Awaitable() {
+        this._resolve = null;
+    }
+    Awaitable.prototype.isInProgress = function () {
+        return this._resolve !== null;
+    };
+    Awaitable.prototype.start = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this._resolve = resolve;
+        });
+    };
+    Awaitable.prototype.resolve = function (result) {
+        var resolve = this._resolve;
+        this._resolve = null;
+        if (resolve) {
+            resolve(result);
+        }
+    };
+    return Awaitable;
+}());
+exports.Awaitable = Awaitable;
 var AwaitableComponent = /** @class */ (function () {
     function AwaitableComponent(vm) {
         this.vm = vm;
