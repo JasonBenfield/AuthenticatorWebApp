@@ -68,7 +68,7 @@ function Xti-CopyShared {
 function Auth-Publish {
     param(
         [ValidateSet("Production", “Development", "Staging", "Test")]
-        [string] $EnvName="Production",
+        [string] $EnvName="Development",
         [switch] $ExcludePackage
     )
     

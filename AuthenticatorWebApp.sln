@@ -22,8 +22,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticatorWebApp.Api", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticatorWebApp.ApiControllers", "Internal\AuthenticatorWebApp.ApiControllers\AuthenticatorWebApp.ApiControllers.csproj", "{A47F915F-5E9F-4A31-B2D0-47D2FB71B31E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticatorWebApp.ApiTemplate", "Internal\AuthenticatorWebApp.ApiTemplate\AuthenticatorWebApp.ApiTemplate.csproj", "{1E06B0D4-7E2A-4A21-99F8-1653853C5CE9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XTI_AuthApi", "Internal\XTI_AuthApi\XTI_AuthApi.csproj", "{EF3EB5F1-7D5F-46C4-9322-B6CD93F3A3FC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticatorWebApp.Core", "Internal\AuthenticatorWebApp.Core\AuthenticatorWebApp.Core.csproj", "{E50FEF42-9B7D-4B78-AA34-8F71B6879EBE}"
@@ -42,7 +40,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticatorWebApp.Fakes",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticatorWebApp.EndToEndTests", "Tests\AuthenticatorWebApp.EndToEndTests\AuthenticatorWebApp.EndToEndTests.csproj", "{887010C4-F171-476D-AB72-B4B8B5529EF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTI_AuthenticatorClient.Extensions", "Lib\XTI_AuthenticatorClient.Extensions\XTI_AuthenticatorClient.Extensions.csproj", "{43D5BD86-FBD5-445E-B4AD-8EF64B90F378}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XTI_AuthenticatorClient.Extensions", "Lib\XTI_AuthenticatorClient.Extensions\XTI_AuthenticatorClient.Extensions.csproj", "{43D5BD86-FBD5-445E-B4AD-8EF64B90F378}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,10 +64,6 @@ Global
 		{A47F915F-5E9F-4A31-B2D0-47D2FB71B31E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A47F915F-5E9F-4A31-B2D0-47D2FB71B31E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A47F915F-5E9F-4A31-B2D0-47D2FB71B31E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1E06B0D4-7E2A-4A21-99F8-1653853C5CE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1E06B0D4-7E2A-4A21-99F8-1653853C5CE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1E06B0D4-7E2A-4A21-99F8-1653853C5CE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1E06B0D4-7E2A-4A21-99F8-1653853C5CE9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EF3EB5F1-7D5F-46C4-9322-B6CD93F3A3FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EF3EB5F1-7D5F-46C4-9322-B6CD93F3A3FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF3EB5F1-7D5F-46C4-9322-B6CD93F3A3FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -115,7 +109,6 @@ Global
 		{7468F4B7-8218-46A4-ACC8-A575D9A42F35} = {0A8D8888-A7C3-4D15-9F44-21B818C8A293}
 		{ED39B57E-3C70-4550-8A23-25C4A441E586} = {DB0D009C-900F-4638-AA8C-E8A60BECF494}
 		{A47F915F-5E9F-4A31-B2D0-47D2FB71B31E} = {DB0D009C-900F-4638-AA8C-E8A60BECF494}
-		{1E06B0D4-7E2A-4A21-99F8-1653853C5CE9} = {DB0D009C-900F-4638-AA8C-E8A60BECF494}
 		{EF3EB5F1-7D5F-46C4-9322-B6CD93F3A3FC} = {DB0D009C-900F-4638-AA8C-E8A60BECF494}
 		{E50FEF42-9B7D-4B78-AA34-8F71B6879EBE} = {DB0D009C-900F-4638-AA8C-E8A60BECF494}
 		{ECEFCADE-2AA4-4551-AB7F-0388624DD14C} = {DB0D009C-900F-4638-AA8C-E8A60BECF494}

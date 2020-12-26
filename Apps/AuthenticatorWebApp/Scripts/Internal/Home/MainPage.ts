@@ -1,4 +1,4 @@
-﻿/// <reference path="../api/authenticatorentities.d.ts" />
+﻿/// <reference path="../../authenticator/api/authenticatorentities.d.ts" />
 import 'reflect-metadata';
 import { MainPageViewModel } from "./MainPageViewModel";
 import { startup } from 'xtistart';

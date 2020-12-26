@@ -1,6 +1,7 @@
 ﻿using AuthenticatorWebApp.Core;
 using System.Threading.Tasks;
 using XTI_App;
+using XTI_App.Api;
 using XTI_Core;
 
 namespace AuthenticatorWebApp.Api
@@ -18,23 +19,14 @@ namespace AuthenticatorWebApp.Api
 
         public async Task Run()
         {
-            var app = await appFactory.Apps().App(AuthenticatorAppKey.Key);
-            const string title = "Authenticator";
-            if (app.Key().Equals(AuthenticatorAppKey.Key))
-            {
-                await app.SetTitle(title);
-            }
-            else
-            {
-                app = await appFactory.Apps().Add(AuthenticatorAppKey.Key, title, clock.Now());
-            }
-            var currentVersion = await app.CurrentVersion();
-            if (!currentVersion.IsCurrent())
-            {
-                currentVersion = await app.StartNewMajorVersion(clock.Now());
-                await currentVersion.Publishing();
-                await currentVersion.Published();
-            }
+            await new AllAppSetup(appFactory, clock).Run();
+            await new DefaultAppSetup
+            (
+                appFactory,
+                clock,
+                new AuthenticatorApiTemplateFactory().Create(),
+                "Authenticator"
+            ).Run();
         }
     }
 }

@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Internal\AuthenticatorWebApp.ApiTemplate\AuthenticatorWebApp.ApiTemplate.csproj" />
+    <ProjectReference Include="..\..\Internal\AuthenticatorWebApp.Api\AuthenticatorWebApp.Api.csproj" />
   </ItemGroup>
 
 </Project>

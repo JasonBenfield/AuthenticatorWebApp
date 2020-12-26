@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const entry = {
     user: './Scripts/Shared/User/UserPage.ts',
     login: './Scripts/Authenticator/Auth/LoginPage.ts',
-    home: './Scripts/Authenticator/Home/MainPage.ts'
+    home: './Scripts/Internal/Home/MainPage.ts'
 };
 const exportModule = {
     rules: [
@@ -66,7 +66,7 @@ const exportModule = {
 const outputFilename = '[name].js';
 const resolve = {
     alias: {
-        xtistart: path.resolve(__dirname, 'Scripts/Authenticator/Startup.js')
+        xtistart: path.resolve(__dirname, 'Scripts/Internal/Startup.js')
     }
 };
 const plugins = [

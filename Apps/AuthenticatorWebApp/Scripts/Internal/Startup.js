@@ -6,9 +6,9 @@ var AppApiEvents_1 = require("../Shared/AppApiEvents");
 var ConsoleLog_1 = require("../Shared/ConsoleLog");
 var ModalErrorComponent_1 = require("../Shared/Error/ModalErrorComponent");
 var tsyringe_1 = require("tsyringe");
-var AuthenticatorAppApi_1 = require("./Api/AuthenticatorAppApi");
+var AuthenticatorAppApi_1 = require("../Authenticator/Api/AuthenticatorAppApi");
 var AppApi_1 = require("../Shared/AppApi");
-var LogoutUrl_1 = require("./LogoutUrl");
+var LogoutUrl_1 = require("../Authenticator/LogoutUrl");
 function startup(pageVM, page) {
     tsyringe_1.container.register('PageVM', { useFactory: function (c) { return c.resolve(pageVM); } });
     tsyringe_1.container.register('Page', { useFactory: function (c) { return c.resolve(page); } });

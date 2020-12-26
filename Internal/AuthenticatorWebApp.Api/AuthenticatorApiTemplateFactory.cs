@@ -1,10 +1,9 @@
-﻿using AuthenticatorWebApp.Api;
-using AuthenticatorWebApp.Core;
+﻿using AuthenticatorWebApp.Core;
 using Microsoft.Extensions.DependencyInjection;
 using XTI_App.Api;
 using XTI_AuthApi;
 
-namespace AuthenticatorWebApp.ApiTemplate
+namespace AuthenticatorWebApp.Api
 {
     public sealed class AuthenticatorApiTemplateFactory : IAppApiTemplateFactory
     {

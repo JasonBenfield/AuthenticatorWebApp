@@ -1,4 +1,4 @@
-﻿using AuthenticatorWebApp.ApiTemplate;
+﻿using AuthenticatorWebApp.Api;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Threading.Tasks;

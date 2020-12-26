@@ -3,9 +3,9 @@ import { AppApiEvents } from '../Shared/AppApiEvents';
 import { ConsoleLog } from '../Shared/ConsoleLog';
 import { ModalErrorComponent } from '../Shared/Error/ModalErrorComponent';
 import { container } from 'tsyringe';
-import { AuthenticatorAppApi } from './Api/AuthenticatorAppApi';
+import { AuthenticatorAppApi } from '../Authenticator/Api/AuthenticatorAppApi';
 import { AppApi } from '../Shared/AppApi';
-import { LogoutUrl } from './LogoutUrl';
+import { LogoutUrl } from '../Authenticator/LogoutUrl';
 
 export function startup(pageVM: any, page: any) {
     container.register('PageVM', { useFactory: c => c.resolve(pageVM) });
