@@ -14,7 +14,7 @@ namespace XTI_AuthenticatorClient
             AuthApi = new AuthApiGroup(httpClientFactory, xtiToken, url);
         }
 
-        public const string DefaultVersion = "V1129";
+        public const string DefaultVersion = "V3";
         public UserGroup User
         {
             get;

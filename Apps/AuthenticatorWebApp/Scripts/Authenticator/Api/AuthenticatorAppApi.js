@@ -1,9 +1,8 @@
 "use strict";
 // Generated code
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthenticatorAppApi = void 0;
 var tslib_1 = require("tslib");
-var AppApi_1 = require("../../Shared/AppApi");
+var AppApi_1 = require("XtiShared/AppApi");
 var UserGroup_1 = require("./UserGroup");
 var AuthGroup_1 = require("./AuthGroup");
 var AuthApiGroup_1 = require("./AuthApiGroup");
@@ -17,7 +16,7 @@ var AuthenticatorAppApi = /** @class */ (function (_super) {
         _this.AuthApi = _this.addGroup(function (evts, resourceUrl) { return new AuthApiGroup_1.AuthApiGroup(evts, resourceUrl); });
         return _this;
     }
-    AuthenticatorAppApi.DefaultVersion = 'V1129';
+    AuthenticatorAppApi.DefaultVersion = 'V3';
     return AuthenticatorAppApi;
 }(AppApi_1.AppApi));
 exports.AuthenticatorAppApi = AuthenticatorAppApi;

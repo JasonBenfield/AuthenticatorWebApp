@@ -10,6 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="XTI_App.Api" Version="1.6.6-dev201224083526788" />
+    <PackageReference Include="XTI_App.Api" Version="1.6.6-dev201229072419406" />
   </ItemGroup>
 </Project>

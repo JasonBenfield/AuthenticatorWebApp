@@ -5,6 +5,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using XTI_App;
+using XTI_App.Api;
 using XTI_Core;
 
 namespace AuthSetupConsoleApp
@@ -15,6 +16,7 @@ namespace AuthSetupConsoleApp
         private readonly IHostApplicationLifetime lifetime;
         private readonly AppFactory appFactory;
         private readonly Clock clock;
+        private readonly AppApiFactory apiFactory;
 
         public AuthSetupService(IServiceProvider sp)
         {
@@ -22,13 +24,14 @@ namespace AuthSetupConsoleApp
             lifetime = scope.ServiceProvider.GetService<IHostApplicationLifetime>();
             appFactory = scope.ServiceProvider.GetService<AppFactory>();
             clock = scope.ServiceProvider.GetService<Clock>();
+            apiFactory = scope.ServiceProvider.GetService<AppApiFactory>();
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             try
             {
-                await new AuthSetup(appFactory, clock).Run();
+                await new AuthSetup(appFactory, clock, apiFactory).Run();
             }
             catch (Exception ex)
             {

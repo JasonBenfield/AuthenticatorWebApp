@@ -20,7 +20,7 @@ namespace AuthApiGeneratorApp
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddApiGenerator(hostContext.Configuration);
-                    services.AddScoped<IAppApiTemplateFactory, AuthenticatorApiTemplateFactory>();
+                    services.AddScoped<AppApiFactory, AuthenticatorApiFactory>();
                     services.AddHostedService<ApiGeneratorHostedService>();
                 })
                 .RunConsoleAsync();

@@ -1,1 +1,0 @@
-{"version":3,"file":"PageViewModel.js","sourceRoot":"","sources":["PageViewModel.ts"],"names":[],"mappings":";;;AAAA,yDAAwD;AACxD,6BAA+B;AAE/B;IACI,uBAAY,QAAa;QAIhB,kBAAa,GAAG,EAAE,CAAC,UAAU,CAAC,WAAW,CAAC,CAAC;QAHhD,IAAI,qCAAiB,CAAC,IAAI,CAAC,aAAa,EAAE,EAAE,QAAQ,CAAC,CAAC,QAAQ,EAAE,CAAC;IACrE,CAAC;IAGL,oBAAC;AAAD,CAAC,AAND,IAMC;AANY,sCAAa"}

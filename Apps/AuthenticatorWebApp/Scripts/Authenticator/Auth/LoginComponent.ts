@@ -1,12 +1,12 @@
-﻿import { Awaitable } from "../../Shared/Awaitable";
-import { TextInput, PasswordInput } from "../../Shared/TextInput";
-import { AsyncCommand } from "../../Shared/Command";
-import { ColumnCss } from "../../Shared/ColumnCss";
+﻿import { Awaitable } from "XtiShared/Awaitable";
+import { TextInput, PasswordInput } from "XtiShared/TextInput";
+import { AsyncCommand } from "XtiShared/Command";
+import { ColumnCss } from "XtiShared/ColumnCss";
 import { LoginComponentViewModel } from './LoginComponentViewModel';
-import { UrlBuilder } from '../../Shared/UrlBuilder';
+import { UrlBuilder } from 'XtiShared/UrlBuilder';
 import { container } from 'tsyringe';
 import { AuthenticatorAppApi } from '../Api/AuthenticatorAppApi';
-import { Alert } from "../../Shared/Alert";
+import { Alert } from "XtiShared/Alert";
 
 export class LoginResult {
     constructor(public readonly token: string) {
