@@ -1,10 +1,10 @@
-﻿import { TextInputViewModel } from "../../Shared/TextInput";
-import { ComponentTemplate } from "../../Shared/ComponentTemplate";
-import { createCommandPillViewModel } from "../../Shared/Templates/CommandPillTemplate";
+﻿import { TextInputViewModel } from "XtiShared/TextInput";
+import { ComponentTemplate } from "XtiShared/ComponentTemplate";
+import { createCommandPillViewModel } from "XtiShared/Templates/CommandPillTemplate";
 import * as template from './LoginComponent.html';
-import { OffscreenSubmitViewModel } from '../../Shared/OffscreenSubmitViewModel';
+import { OffscreenSubmitViewModel } from 'XtiShared/OffscreenSubmitViewModel';
 import * as ko from 'knockout';
-import { AlertViewModel } from '../../Shared/Alert';
+import { AlertViewModel } from 'XtiShared/Alert';
 
 export class LoginComponentViewModel {
     constructor() {

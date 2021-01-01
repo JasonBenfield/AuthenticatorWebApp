@@ -1,9 +1,8 @@
 "use strict";
 // Generated code
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthenticatorAppApi = void 0;
 var tslib_1 = require("tslib");
-var AppApi_1 = require("../../Shared/AppApi");
+var AppApi_1 = require("XtiShared/AppApi");
 var UserGroup_1 = require("./UserGroup");
 var AuthGroup_1 = require("./AuthGroup");
 var AuthApiGroup_1 = require("./AuthApiGroup");

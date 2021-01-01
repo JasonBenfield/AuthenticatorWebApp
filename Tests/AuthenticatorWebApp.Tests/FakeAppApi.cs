@@ -41,8 +41,8 @@ namespace AuthenticatorWebApp.Tests
 
         public async Task Run()
         {
-            var fakeTemplateFactory = new FakeAppApiTemplateFactory();
-            var template = fakeTemplateFactory.Create();
+            var fakeTemplateFactory = new FakeAppApiFactory();
+            var template = fakeTemplateFactory.CreateTemplate();
             var setup = new DefaultAppSetup
             (
                 appFactory,
@@ -62,13 +62,9 @@ namespace AuthenticatorWebApp.Tests
             );
         }
     }
-    public sealed class FakeAppApiTemplateFactory : IAppApiTemplateFactory
+    public sealed class FakeAppApiFactory : AppApiFactory
     {
-        public AppApiTemplate Create()
-        {
-            var api = new FakeAppApi(FakeAppKey.AppKey, new AppApiSuperUser());
-            return api.Template();
-        }
+        protected override AppApi _Create(IAppApiUser user) => new FakeAppApi(FakeAppKey.AppKey, user);
     }
     public sealed class FakeAppApi : WebAppApi
     {

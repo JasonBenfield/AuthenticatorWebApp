@@ -1,13 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LoginComponentViewModel = void 0;
-var TextInput_1 = require("../../Shared/TextInput");
-var ComponentTemplate_1 = require("../../Shared/ComponentTemplate");
-var CommandPillTemplate_1 = require("../../Shared/Templates/CommandPillTemplate");
+var TextInput_1 = require("XtiShared/TextInput");
+var ComponentTemplate_1 = require("XtiShared/ComponentTemplate");
+var CommandPillTemplate_1 = require("XtiShared/Templates/CommandPillTemplate");
 var template = require("./LoginComponent.html");
-var OffscreenSubmitViewModel_1 = require("../../Shared/OffscreenSubmitViewModel");
+var OffscreenSubmitViewModel_1 = require("XtiShared/OffscreenSubmitViewModel");
 var ko = require("knockout");
-var Alert_1 = require("../../Shared/Alert");
+var Alert_1 = require("XtiShared/Alert");
 var LoginComponentViewModel = /** @class */ (function () {
     function LoginComponentViewModel() {
         this.componentName = ko.observable('login-component');

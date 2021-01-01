@@ -1,10 +1,10 @@
 // Generated code
 
-import { AppApiGroup } from "../../Shared/AppApiGroup";
-import { AppApiAction } from "../../Shared/AppApiAction";
-import { AppApiView } from "../../Shared/AppApiView";
-import { AppApiEvents } from "../../Shared/AppApiEvents";
-import { AppResourceUrl } from "../../Shared/AppResourceUrl";
+import { AppApiGroup } from "XtiShared/AppApiGroup";
+import { AppApiAction } from "XtiShared/AppApiAction";
+import { AppApiView } from "XtiShared/AppApiView";
+import { AppApiEvents } from "XtiShared/AppApiEvents";
+import { AppResourceUrl } from "XtiShared/AppResourceUrl";
 
 export class AuthGroup extends AppApiGroup {
 	constructor(events: AppApiEvents, resourceUrl: AppResourceUrl) {

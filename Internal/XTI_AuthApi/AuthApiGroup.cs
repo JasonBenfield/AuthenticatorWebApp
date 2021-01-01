@@ -6,7 +6,7 @@ namespace XTI_AuthApi
 {
     public sealed class AuthApiGroup : AppApiGroup
     {
-        public AuthApiGroup(AppApi api, AuthGroupFactory factory)
+        public AuthApiGroup(AppApi api, AuthActionFactory factory)
             : base
             (
                   api,

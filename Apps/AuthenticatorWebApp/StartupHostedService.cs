@@ -5,6 +5,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using XTI_App;
+using XTI_App.Api;
 using XTI_Core;
 
 namespace AuthenticatorWebApp
@@ -23,7 +24,8 @@ namespace AuthenticatorWebApp
             using var scope = sp.CreateScope();
             var appFactory = scope.ServiceProvider.GetService<AppFactory>();
             var clock = scope.ServiceProvider.GetService<Clock>();
-            await new AuthSetup(appFactory, clock).Run();
+            var apiFactory = scope.ServiceProvider.GetService<AppApiFactory>();
+            await new AuthSetup(appFactory, clock, apiFactory).Run();
             await StopAsync(cancellationToken);
         }
 

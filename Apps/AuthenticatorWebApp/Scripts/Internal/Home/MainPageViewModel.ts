@@ -1,5 +1,5 @@
 ﻿import * as template from './MainPage.html';
-import { PageViewModel } from '../../Shared/PageViewModel';
+import { PageViewModel } from 'XtiShared/PageViewModel';
 import { singleton } from 'tsyringe';
 
 @singleton()

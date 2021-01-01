@@ -1,15 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LoginComponent = exports.LoginResult = void 0;
 var tslib_1 = require("tslib");
-var Awaitable_1 = require("../../Shared/Awaitable");
-var TextInput_1 = require("../../Shared/TextInput");
-var Command_1 = require("../../Shared/Command");
-var ColumnCss_1 = require("../../Shared/ColumnCss");
-var UrlBuilder_1 = require("../../Shared/UrlBuilder");
+var Awaitable_1 = require("XtiShared/Awaitable");
+var TextInput_1 = require("XtiShared/TextInput");
+var Command_1 = require("XtiShared/Command");
+var ColumnCss_1 = require("XtiShared/ColumnCss");
+var UrlBuilder_1 = require("XtiShared/UrlBuilder");
 var tsyringe_1 = require("tsyringe");
 var AuthenticatorAppApi_1 = require("../Api/AuthenticatorAppApi");
-var Alert_1 = require("../../Shared/Alert");
+var Alert_1 = require("XtiShared/Alert");
 var LoginResult = /** @class */ (function () {
     function LoginResult(token) {
         this.token = token;

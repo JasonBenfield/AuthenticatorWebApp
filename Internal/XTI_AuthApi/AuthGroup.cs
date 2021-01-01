@@ -6,7 +6,7 @@ namespace XTI_AuthApi
 {
     public sealed class AuthGroup : AppApiGroup
     {
-        public AuthGroup(AppApi api, AuthGroupFactory factory)
+        public AuthGroup(AppApi api, AuthActionFactory actionFactory)
             : base
             (
                   api,
@@ -23,18 +23,18 @@ namespace XTI_AuthApi
             (
                 nameof(Verify),
                 () => new LoginValidation(),
-                factory.CreateVerifyAction
+                actionFactory.CreateVerifyAction
             );
             Login = actions.AddAction
             (
                 nameof(Login),
                 () => new LoginModelValidation(),
-                factory.CreateLoginAction
+                actionFactory.CreateLoginAction
             );
             Logout = actions.AddAction
             (
                 nameof(Logout),
-                () => factory.CreateLogoutAction()
+                () => actionFactory.CreateLogoutAction()
             );
         }
         public AppApiAction<EmptyRequest, AppActionViewResult> Index { get; }

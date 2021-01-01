@@ -1,10 +1,10 @@
-﻿import { PageLoader } from '../Shared/PageLoader';
-import { AppApiEvents } from '../Shared/AppApiEvents';
-import { ConsoleLog } from '../Shared/ConsoleLog';
-import { ModalErrorComponent } from '../Shared/Error/ModalErrorComponent';
+﻿import { PageLoader } from 'XtiShared/PageLoader';
+import { AppApiEvents } from 'XtiShared/AppApiEvents';
+import { ConsoleLog } from 'XtiShared/ConsoleLog';
+import { ModalErrorComponent } from 'XtiShared/Error/ModalErrorComponent';
 import { container } from 'tsyringe';
 import { AuthenticatorAppApi } from '../Authenticator/Api/AuthenticatorAppApi';
-import { AppApi } from '../Shared/AppApi';
+import { AppApi } from 'XtiShared/AppApi';
 import { LogoutUrl } from '../Authenticator/LogoutUrl';
 
 export function startup(pageVM: any, page: any) {
