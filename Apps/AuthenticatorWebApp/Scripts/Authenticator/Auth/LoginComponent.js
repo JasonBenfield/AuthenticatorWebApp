@@ -1,15 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LoginComponent = exports.LoginResult = void 0;
 var tslib_1 = require("tslib");
-var Awaitable_1 = require("../../Shared/Awaitable");
-var TextInput_1 = require("../../Shared/TextInput");
-var Command_1 = require("../../Shared/Command");
-var ColumnCss_1 = require("../../Shared/ColumnCss");
-var UrlBuilder_1 = require("../../Shared/UrlBuilder");
-var tsyringe_1 = require("tsyringe");
-var AuthenticatorAppApi_1 = require("../Api/AuthenticatorAppApi");
-var Alert_1 = require("../../Shared/Alert");
+var Awaitable_1 = require("XtiShared/Awaitable");
+var Command_1 = require("XtiShared/Command");
+var ColumnCss_1 = require("XtiShared/ColumnCss");
+var UrlBuilder_1 = require("XtiShared/UrlBuilder");
+var Alert_1 = require("XtiShared/Alert");
+var VerifyLoginForm_1 = require("../Api/VerifyLoginForm");
+var _ = require("lodash");
+var FaIcon_1 = require("XtiShared/FaIcon");
 var LoginResult = /** @class */ (function () {
     function LoginResult(token) {
         this.token = token;
@@ -18,24 +17,31 @@ var LoginResult = /** @class */ (function () {
 }());
 exports.LoginResult = LoginResult;
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(vm, authenticator) {
+    function LoginComponent(vm, authApi) {
+        var _this = this;
         this.vm = vm;
-        this.authenticator = authenticator;
+        this.authApi = authApi;
         this.awaitable = new Awaitable_1.Awaitable();
         this.alert = new Alert_1.Alert(this.vm.alert);
-        this.userName = new TextInput_1.TextInput(this.vm.userName);
-        this.password = new TextInput_1.PasswordInput(this.vm.password);
+        this.verifyLoginForm = new VerifyLoginForm_1.VerifyLoginForm(this.vm.verifyLoginForm);
         this.loginCommand = new Command_1.AsyncCommand(this.vm.loginCommand, this.login.bind(this));
-        this.userName.setColumns(new ColumnCss_1.ColumnCss(3), new ColumnCss_1.ColumnCss(0));
-        this.password.setColumns(new ColumnCss_1.ColumnCss(3), new ColumnCss_1.ColumnCss(0));
+        this.verifyLoginForm.UserName.setColumns(new ColumnCss_1.ColumnCss(3), new ColumnCss_1.ColumnCss());
+        this.verifyLoginForm.Password.setColumns(new ColumnCss_1.ColumnCss(3), new ColumnCss_1.ColumnCss());
+        _.delay(function () {
+            _this.verifyLoginForm.UserName.setFocus();
+        }, 100);
+        this.loginCommand.makePrimary();
         this.loginCommand.setText('Login');
+        var loginIcon = this.loginCommand.icon();
+        loginIcon.setPrefix(FaIcon_1.FaIconPrefix.solid);
+        loginIcon.setName('fa-sign-in-alt');
     }
     LoginComponent.prototype.start = function () {
         return this.awaitable.start();
     };
     LoginComponent.prototype.login = function () {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var cred;
+            var result, cred;
             return tslib_1.__generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -43,12 +49,14 @@ var LoginComponent = /** @class */ (function () {
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, , 3, 4]);
-                        cred = this.getCredentials();
-                        return [4 /*yield*/, this.verifyLogin(cred)];
+                        return [4 /*yield*/, this.verifyLoginForm.save(this.authApi.Auth.VerifyLoginAction)];
                     case 2:
-                        _a.sent();
-                        this.alert.info('Opening page...');
-                        this.postLogin(cred);
+                        result = _a.sent();
+                        if (result.succeeded()) {
+                            cred = this.getCredentials();
+                            this.alert.info('Opening page...');
+                            this.postLogin(cred);
+                        }
                         return [3 /*break*/, 4];
                     case 3:
                         this.alert.clear();
@@ -60,17 +68,13 @@ var LoginComponent = /** @class */ (function () {
     };
     LoginComponent.prototype.getCredentials = function () {
         return {
-            UserName: this.userName.getValue(),
-            Password: this.password.getValue()
+            UserName: this.verifyLoginForm.UserName.getValue(),
+            Password: this.verifyLoginForm.Password.getValue()
         };
-    };
-    LoginComponent.prototype.verifyLogin = function (cred) {
-        var authenticator = tsyringe_1.container.resolve(AuthenticatorAppApi_1.AuthenticatorAppApi);
-        return authenticator.Auth.Verify(cred);
     };
     LoginComponent.prototype.postLogin = function (cred) {
         var form = document.createElement('form');
-        form.action = this.authenticator.Auth.Login.getUrl(null).getUrl();
+        form.action = this.authApi.Auth.Login.getUrl(null).getUrl();
         form.style.position = 'absolute';
         form.style.top = '-100px';
         form.style.left = '-100px';

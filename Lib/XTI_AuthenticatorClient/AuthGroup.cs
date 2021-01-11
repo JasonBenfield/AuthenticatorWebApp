@@ -2,6 +2,7 @@
 using XTI_WebAppClient;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace XTI_AuthenticatorClient
 {
@@ -11,6 +12,6 @@ namespace XTI_AuthenticatorClient
         {
         }
 
-        public Task<EmptyActionResult> Verify(LoginCredentials model) => Post<EmptyActionResult, LoginCredentials>("Verify", "", model);
+        public Task<EmptyActionResult> VerifyLogin(VerifyLoginForm model) => Post<EmptyActionResult, VerifyLoginForm>("VerifyLogin", "", model);
     }
 }

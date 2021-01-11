@@ -1,7 +1,7 @@
 ﻿/// <reference path="../api/authenticatorentities.d.ts" />
 import 'reflect-metadata';
 import { LoginPageViewModel } from "./LoginPageViewModel";
-import { LoginComponent, LoginResult } from "./LoginComponent";
+import { LoginComponent } from "./LoginComponent";
 import { startup } from 'xtistart';
 import { singleton } from 'tsyringe';
 import { AuthenticatorAppApi } from '../Api/AuthenticatorAppApi';

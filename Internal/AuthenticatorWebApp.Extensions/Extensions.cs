@@ -19,20 +19,19 @@ namespace AuthenticatorWebApp.Extensions
             services.AddScoped<IHashedPasswordFactory, Md5HashedPasswordFactory>();
             services.AddScoped<AccessForAuthenticate, JwtAccess>();
             services.AddScoped<AccessForLogin, CookieAccess>();
-            services.AddScoped<AuthGroupFactory>();
+            services.AddScoped<AuthActionFactory>();
             services.AddSingleton(_ => AuthenticatorAppKey.Key);
-            services.AddScoped<AuthenticatorAppApi>();
-            services.AddScoped<AppApi, AuthenticatorAppApi>(sp => sp.GetService<AuthenticatorAppApi>());
+            services.AddScoped<AppApiFactory, AuthenticatorApiFactory>();
+            services.AddScoped(sp => (AuthenticatorAppApi)sp.GetService<AppApi>());
             services
                 .AddMvc()
                 .AddJsonOptions(options =>
                 {
-                    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
-                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
-                    options.JsonSerializerOptions.IgnoreNullValues = true;
+                    options.SetDefaultJsonOptions();
                 })
                 .AddMvcOptions(options =>
                 {
+                    options.SetDefaultMvcOptions();
                 });
             services.AddControllersWithViews()
                 .PartManager.ApplicationParts.Add

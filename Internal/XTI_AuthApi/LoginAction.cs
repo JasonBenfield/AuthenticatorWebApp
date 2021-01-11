@@ -1,13 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Web;
 using XTI_App.Api;
-using XTI_Core;
 using XTI_WebApp;
 using XTI_WebApp.Api;
 
 namespace XTI_AuthApi
 {
-    public sealed class LoginAction : AppAction<LoginModel, AppActionRedirectResult>
+    public sealed class LoginAction : AppAction<LoginModel, WebRedirectResult>
     {
         private readonly Authentication auth;
         private readonly IAnonClient anonClient;
@@ -18,11 +18,11 @@ namespace XTI_AuthApi
             this.anonClient = anonClient;
         }
 
-        public async Task<AppActionRedirectResult> Execute(LoginModel model)
+        public async Task<WebRedirectResult> Execute(LoginModel model)
         {
             await auth.Authenticate(model.Credentials.UserName, model.Credentials.Password);
             anonClient.Load();
-            anonClient.Persist("", Timestamp.MinValue.Value, anonClient.RequesterKey);
+            anonClient.Persist("", DateTimeOffset.MinValue, anonClient.RequesterKey);
             var startUrl = model.StartUrl;
             if (string.IsNullOrWhiteSpace(startUrl))
             {
@@ -44,7 +44,7 @@ namespace XTI_AuthApi
                 }
                 startUrl += $"returnUrl={model.ReturnUrl}";
             }
-            return new AppActionRedirectResult(startUrl);
+            return new WebRedirectResult(startUrl);
         }
     }
 

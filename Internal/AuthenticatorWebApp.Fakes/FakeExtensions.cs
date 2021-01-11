@@ -1,5 +1,7 @@
-﻿using XTI_AuthApi;
+﻿using AuthenticatorWebApp.Api;
 using Microsoft.Extensions.DependencyInjection;
+using XTI_App.Api;
+using XTI_AuthApi;
 
 namespace AuthenticatorWebApp.Fakes
 {
@@ -9,6 +11,7 @@ namespace AuthenticatorWebApp.Fakes
         {
             services.AddScoped<AccessForAuthenticate, FakeAccessForAuthenticate>();
             services.AddScoped<AccessForLogin, FakeAccessForLogin>();
+            services.AddScoped<AppApiFactory, AuthenticatorApiFactory>();
             services.AddScoped(sp => new FakeAuthenticatorAppApi(sp));
         }
     }

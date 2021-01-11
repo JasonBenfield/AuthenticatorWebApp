@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LogoutUrl = void 0;
 var tslib_1 = require("tslib");
 var tsyringe_1 = require("tsyringe");
 var AuthenticatorAppApi_1 = require("./Api/AuthenticatorAppApi");

@@ -7,13 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MainDB.EF.SqlServer" Version="1.7.6" />
-    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="MainDB.EF.SqlServer" Version="1.9.4" />
+    <PackageReference Include="NUnit" Version="3.13.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
-    <PackageReference Include="XTI_Configuration.Extensions" Version="1.8.3-dev201219094947885" />
-    <PackageReference Include="XTI_Secrets.Extensions" Version="1.7.3" />
-    <PackageReference Include="XTI_WebApp.Fakes" Version="1.6.4-dev201224083655899" />
+    <PackageReference Include="XTI_Configuration.Extensions" Version="1.8.9" />
+    <PackageReference Include="XTI_Secrets.Extensions" Version="1.7.4" />
+    <PackageReference Include="XTI_WebApp.Fakes" Version="1.7.0" />
   </ItemGroup>
 
   <ItemGroup>

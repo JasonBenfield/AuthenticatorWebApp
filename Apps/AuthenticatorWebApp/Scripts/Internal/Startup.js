@@ -1,13 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.startup = void 0;
-var PageLoader_1 = require("../Shared/PageLoader");
-var AppApiEvents_1 = require("../Shared/AppApiEvents");
-var ConsoleLog_1 = require("../Shared/ConsoleLog");
-var ModalErrorComponent_1 = require("../Shared/Error/ModalErrorComponent");
+var PageLoader_1 = require("XtiShared/PageLoader");
+var AppApiEvents_1 = require("XtiShared/AppApiEvents");
+var ConsoleLog_1 = require("XtiShared/ConsoleLog");
+var ModalErrorComponent_1 = require("XtiShared/Error/ModalErrorComponent");
 var tsyringe_1 = require("tsyringe");
 var AuthenticatorAppApi_1 = require("../Authenticator/Api/AuthenticatorAppApi");
-var AppApi_1 = require("../Shared/AppApi");
+var AppApi_1 = require("XtiShared/AppApi");
 var LogoutUrl_1 = require("../Authenticator/LogoutUrl");
 function startup(pageVM, page) {
     tsyringe_1.container.register('PageVM', { useFactory: function (c) { return c.resolve(pageVM); } });

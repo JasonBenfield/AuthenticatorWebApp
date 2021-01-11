@@ -6,7 +6,7 @@ namespace XTI_AuthApi
 {
     public sealed class AuthGroup : AppApiGroup
     {
-        public AuthGroup(AppApi api, AuthGroupFactory factory)
+        public AuthGroup(AppApi api, AuthActionFactory actionFactory)
             : base
             (
                   api,
@@ -19,27 +19,33 @@ namespace XTI_AuthApi
         {
             var actions = Actions<WebAppApiActionCollection>();
             Index = actions.AddDefaultView();
-            Verify = actions.AddAction
+            VerifyLogin = actions.AddAction
             (
-                nameof(Verify),
-                () => new LoginValidation(),
-                factory.CreateVerifyAction
+                nameof(VerifyLogin),
+                actionFactory.CreateVerifyLoginAction
+            );
+            VerifyLoginForm = actions.AddPartialView
+            (
+                nameof(VerifyLoginForm),
+                () => new PartialViewAppAction<EmptyRequest>(nameof(VerifyLoginForm))
             );
             Login = actions.AddAction
             (
                 nameof(Login),
                 () => new LoginModelValidation(),
-                factory.CreateLoginAction
+                actionFactory.CreateLoginAction
             );
             Logout = actions.AddAction
             (
                 nameof(Logout),
-                () => factory.CreateLogoutAction()
+                actionFactory.CreateLogoutAction
             );
+
         }
-        public AppApiAction<EmptyRequest, AppActionViewResult> Index { get; }
-        public AppApiAction<LoginCredentials, EmptyActionResult> Verify { get; }
-        public AppApiAction<LoginModel, AppActionRedirectResult> Login { get; }
-        public AppApiAction<EmptyRequest, AppActionRedirectResult> Logout { get; }
+        public AppApiAction<EmptyRequest, WebViewResult> Index { get; }
+        public AppApiAction<VerifyLoginForm, EmptyActionResult> VerifyLogin { get; }
+        public AppApiAction<EmptyRequest, WebPartialViewResult> VerifyLoginForm { get; }
+        public AppApiAction<LoginModel, WebRedirectResult> Login { get; }
+        public AppApiAction<EmptyRequest, WebRedirectResult> Logout { get; }
     }
 }

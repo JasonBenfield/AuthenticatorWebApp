@@ -10,9 +10,9 @@ namespace XTI_AuthApi
         public string StartUrl { get; set; }
         public string ReturnUrl { get; set; }
     }
-    public sealed class StartAction : AppAction<StartRequest, AppActionRedirectResult>
+    public sealed class StartAction : AppAction<StartRequest, WebRedirectResult>
     {
-        public Task<AppActionRedirectResult> Execute(StartRequest model)
+        public Task<WebRedirectResult> Execute(StartRequest model)
         {
             string url;
             if (string.IsNullOrWhiteSpace(model.StartUrl))
@@ -34,7 +34,7 @@ namespace XTI_AuthApi
             {
                 url = $"{HttpUtility.UrlDecode(model.StartUrl)}?returnUrl={model.ReturnUrl}";
             }
-            return Task.FromResult(new AppActionRedirectResult(url));
+            return Task.FromResult(new WebRedirectResult(url));
         }
     }
 }

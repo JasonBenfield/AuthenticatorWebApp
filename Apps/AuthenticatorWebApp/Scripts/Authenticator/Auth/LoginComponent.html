@@ -1,9 +1,12 @@
-﻿<form data-bind="submit: loginCommand">
-    <!-- ko component: { name: userName.componentName, params: userName } --><!-- /ko -->
-    <!-- ko component: { name: userName.componentName, params: password } --><!-- /ko -->
-    <!-- ko component: { name: offscreenSubmit.componentName, params: offscreenSubmit } --><!-- /ko -->
-</form>
-<div class="nav flex-column nav-pills">
-    <!-- ko component: { name: loginCommand.componentName, params: loginCommand }--><!-- /ko -->
+﻿<div class="container">
+    <form data-bind="submit: loginCommand">
+        <!-- ko with: verifyLoginForm -->
+        <!-- ko component: { name: componentName, params: $data } --><!-- /ko -->
+        <!-- /ko -->
+        <!-- ko component: { name: offscreenSubmit.componentName, params: offscreenSubmit } --><!-- /ko -->
+    </form>
+    <div class="text-end mb-3">
+        <!-- ko component: { name: loginCommand.componentName, params: loginCommand }--><!-- /ko -->
+    </div>
+    <!-- ko component: { name: alert.componentName, params: alert } --><!-- /ko -->
 </div>
-<!-- ko component: { name: alert.componentName, params: alert } --><!-- /ko -->

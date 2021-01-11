@@ -5,7 +5,7 @@ $script:authConfig = [PSCustomObject]@{
     RepoName = "AuthenticatorWebApp"
     AppName = "Authenticator"
     AppType = "WebApp"
-    ProjectDir = "C:\XTI\src\AuthenticatorWebApp\Apps\AuthenticatorWebApp"
+    ProjectDir = "Apps\AuthenticatorWebApp"
 }
 
 function Auth-New-XtiIssue {
@@ -57,14 +57,6 @@ function Auth-Xti-PostMerge {
     $script:authConfig | Xti-PostMerge @PsBoundParameters
 }
 
-function Xti-CopyShared {
-    $source = "..\SharedWebApp\Apps\SharedWebApp"
-    $target = ".\Apps\AuthenticatorWebApp"
-    robocopy "$source\Scripts\Shared\" "$target\Scripts\Shared\" *.ts /e /purge /njh /njs /np /ns /nc /nfl /ndl /a+:R
-    robocopy "$source\Scripts\Shared\" "$target\Scripts\Shared\" /xf *.ts /e /purge /njh /njs /np /ns /nc /nfl /ndl /a-:R
-    robocopy "$source\Views\Exports\Shared\" "$target\Views\Exports\Shared\" /e /purge /njh /njs /np /ns /nc /nfl /ndl /a+:R
-}
-
 function Auth-Publish {
     param(
         [ValidateSet("Production", “Development", "Staging", "Test")]
@@ -106,8 +98,15 @@ function Auth-Publish {
 
     Write-Progress -Activity $activity -Status "Generating the api" -PercentComplete 30
     Auth-GenerateApi -EnvName $EnvName -DefaultVersion $defaultVersion
-
-    Xti-CopyShared
+    
+    tsc -p "$($script:authConfig.ProjectDir)\Scripts\tsconfig.json"
+    
+    if($EnvName -eq "Production") {
+        Auth-ImportWeb -Prod
+    }
+    else {
+        Auth-ImportWeb
+    }
 
     Write-Progress -Activity $activity -Status "Running web pack" -PercentComplete 40
     $script:authConfig | Auth-Webpack
@@ -122,11 +121,15 @@ function Auth-Publish {
         if(-not $ExcludePackage) {
             $script:authConfig | Xti-PublishPackage -DisableUpdateVersion -Prod
         }
+        Auth-ExportWeb -Prod
         Xti-EndPublish -BranchName $branch
         $script:authConfig | Xti-Merge
     }
-    elseif(-not $ExcludePackage) {
-        $script:authConfig | Xti-PublishPackage -DisableUpdateVersion
+    else{
+        if(-not $ExcludePackage) {
+            $script:authConfig | Xti-PublishPackage -DisableUpdateVersion
+        }
+        Auth-ExportWeb
     }
 }
 
@@ -179,4 +182,18 @@ function Auth-Webpack {
 function Auth-ResetTest {
 	Xti-ResetMainDb -EnvName Test
     Auth-Setup -EnvName Test
+}
+
+function Auth-ImportWeb {
+    param(
+        [switch] $Prod
+    )
+    $script:authConfig | Xti-ImportWeb -Prod:$Prod -AppToImport Shared
+}
+
+function Auth-ExportWeb {
+    param(
+        [switch] $Prod
+    )
+    $script:authConfig | Xti-ExportWeb @PsBoundParameters
 }

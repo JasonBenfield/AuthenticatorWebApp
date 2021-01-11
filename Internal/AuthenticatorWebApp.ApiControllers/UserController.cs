@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using XTI_WebApp.Api;
 using AuthenticatorWebApp.Api;
 using XTI_App;
@@ -20,7 +21,7 @@ namespace AuthenticatorWebApp.ApiControllers
         private readonly AuthenticatorAppApi api;
         public async Task<IActionResult> Index(UserStartRequest model)
         {
-            var result = await api.Group("User").Action<UserStartRequest, AppActionViewResult>("Index").Execute(model);
+            var result = await api.Group("User").Action<UserStartRequest, WebViewResult>("Index").Execute(model);
             return View(result.Data.ViewName);
         }
     }
