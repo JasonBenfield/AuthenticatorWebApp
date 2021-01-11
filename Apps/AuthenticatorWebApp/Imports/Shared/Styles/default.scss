@@ -1,0 +1,17 @@
+﻿@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+.position-absolute-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}

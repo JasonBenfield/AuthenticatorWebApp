@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MainPageViewModel = void 0;
 var tslib_1 = require("tslib");
 var template = require("./MainPage.html");
 var PageViewModel_1 = require("XtiShared/PageViewModel");

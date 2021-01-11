@@ -66,7 +66,7 @@ const exportModule = {
 const outputFilename = '[name].js';
 const resolve = {
     alias: {
-        xtistart: path.resolve(__dirname, 'Scripts/Internal/Startup.js'),
+        xtistart: path.resolve(__dirname, 'Scripts/Internal/Startup.ts'),
         XtiShared: path.resolve(__dirname, 'Imports/Shared/')
     }
 };

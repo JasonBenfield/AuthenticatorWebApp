@@ -3,14 +3,7 @@
 interface IUserStartRequest {
 	ReturnUrl: string;
 }
-interface IAppActionViewResult {
-	ViewName: string;
-}
 interface IEmptyRequest {
-}
-interface ILoginCredentials {
-	UserName: string;
-	Password: string;
 }
 interface IEmptyActionResult {
 }
@@ -19,8 +12,9 @@ interface ILoginModel {
 	StartUrl: string;
 	ReturnUrl: string;
 }
-interface IAppActionRedirectResult {
-	Url: string;
+interface ILoginCredentials {
+	UserName: string;
+	Password: string;
 }
 interface ILoginResult {
 	Token: string;

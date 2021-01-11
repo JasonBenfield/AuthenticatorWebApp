@@ -1,0 +1,10 @@
+﻿<!-- ko if: isVisible -->
+<div data-bind="class: css">
+    <!-- ko if: isEnabled -->
+    <!-- ko component: { name: inputComponentName, params: $data } --><!-- /ko -->
+    <!-- /ko -->
+    <!-- ko if: !isEnabled() -->
+    <div data-bind="text: value"></div>
+    <!-- /ko -->
+</div>
+<!-- /ko -->

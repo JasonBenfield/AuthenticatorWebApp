@@ -27,12 +27,11 @@ namespace AuthenticatorWebApp.Extensions
                 .AddMvc()
                 .AddJsonOptions(options =>
                 {
-                    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
-                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
-                    options.JsonSerializerOptions.IgnoreNullValues = true;
+                    options.SetDefaultJsonOptions();
                 })
                 .AddMvcOptions(options =>
                 {
+                    options.SetDefaultMvcOptions();
                 });
             services.AddControllersWithViews()
                 .PartManager.ApplicationParts.Add

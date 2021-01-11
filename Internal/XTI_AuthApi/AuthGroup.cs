@@ -19,11 +19,15 @@ namespace XTI_AuthApi
         {
             var actions = Actions<WebAppApiActionCollection>();
             Index = actions.AddDefaultView();
-            Verify = actions.AddAction
+            VerifyLogin = actions.AddAction
             (
-                nameof(Verify),
-                () => new LoginValidation(),
-                actionFactory.CreateVerifyAction
+                nameof(VerifyLogin),
+                actionFactory.CreateVerifyLoginAction
+            );
+            VerifyLoginForm = actions.AddPartialView
+            (
+                nameof(VerifyLoginForm),
+                () => new PartialViewAppAction<EmptyRequest>(nameof(VerifyLoginForm))
             );
             Login = actions.AddAction
             (
@@ -34,12 +38,14 @@ namespace XTI_AuthApi
             Logout = actions.AddAction
             (
                 nameof(Logout),
-                () => actionFactory.CreateLogoutAction()
+                actionFactory.CreateLogoutAction
             );
+
         }
-        public AppApiAction<EmptyRequest, AppActionViewResult> Index { get; }
-        public AppApiAction<LoginCredentials, EmptyActionResult> Verify { get; }
-        public AppApiAction<LoginModel, AppActionRedirectResult> Login { get; }
-        public AppApiAction<EmptyRequest, AppActionRedirectResult> Logout { get; }
+        public AppApiAction<EmptyRequest, WebViewResult> Index { get; }
+        public AppApiAction<VerifyLoginForm, EmptyActionResult> VerifyLogin { get; }
+        public AppApiAction<EmptyRequest, WebPartialViewResult> VerifyLoginForm { get; }
+        public AppApiAction<LoginModel, WebRedirectResult> Login { get; }
+        public AppApiAction<EmptyRequest, WebRedirectResult> Logout { get; }
     }
 }

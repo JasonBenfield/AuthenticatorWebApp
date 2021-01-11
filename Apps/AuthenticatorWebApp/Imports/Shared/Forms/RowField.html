@@ -1,0 +1,12 @@
+﻿<!-- ko if: isVisible -->
+<div class="form-group row mb-3">
+    <!-- ko with: caption -->
+    <!-- ko if: isVisible -->
+    <label data-bind="text: caption, class: css"></label>
+    <!-- /ko -->
+    <!-- /ko -->
+    <!-- ko with: value -->
+    <!-- ko component: { name: componentName, params: $data } --><!-- /ko -->
+    <!-- /ko -->
+</div>
+<!-- /ko -->

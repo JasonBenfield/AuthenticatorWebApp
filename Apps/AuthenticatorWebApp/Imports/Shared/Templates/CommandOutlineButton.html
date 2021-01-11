@@ -1,0 +1,16 @@
+﻿<!-- ko if: isVisible -->
+<button data-bind="css: { 
+        active: isActive, 
+        'btn-outline-default': contextualClass.isDefault, 
+        'btn-outline-primary': contextualClass.isPrimary, 
+        'btn-outline-secondary': contextualClass.isSecondary, 
+        'btn-outline-light': contextualClass.isLight, 
+        'btn-outline-dark': contextualClass.isDark, 
+        'btn-outline-warning': contextualClass.isWarning, 
+        'btn-outline-info': contextualClass.isInfo, 
+        'btn-outline-danger': contextualClass.isDanger
+        }, click: requestExecute, enable: isEnabled" class="btn">
+    <!-- ko component: { name: 'fa-icon', params: icon } --><!-- /ko -->
+    <span data-bind="text: text"></span>
+</button>
+<!-- /ko -->

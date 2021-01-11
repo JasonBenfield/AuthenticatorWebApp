@@ -35,7 +35,7 @@ namespace AuthenticatorWebApp.Tests
             Assert.That
             (
                 ex.Errors,
-                Has.One.EqualTo(new ErrorModel(AuthErrors.UserNameIsRequired, "UserName")),
+                Has.One.EqualTo(new ErrorModel(AuthErrors.UserNameIsRequired, "User Name", "UserName")),
                 "Should require user name"
             );
         }
@@ -52,7 +52,7 @@ namespace AuthenticatorWebApp.Tests
             Assert.That
             (
                 ex.Errors,
-                Has.One.EqualTo(new ErrorModel(AuthErrors.PasswordIsRequired, "Password")),
+                Has.One.EqualTo(new ErrorModel(AuthErrors.PasswordIsRequired, "Password", "Password")),
                 "Should require password"
             );
         }
@@ -147,7 +147,7 @@ namespace AuthenticatorWebApp.Tests
             return input;
         }
 
-        private static Task<ResultContainer<AppActionRedirectResult>> execute(TestInput input)
+        private static Task<ResultContainer<WebRedirectResult>> execute(TestInput input)
         {
             return input.Api.Auth.Login.Execute(input.Model);
         }

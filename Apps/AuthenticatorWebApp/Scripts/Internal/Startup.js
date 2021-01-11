@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.startup = void 0;
 var PageLoader_1 = require("XtiShared/PageLoader");
 var AppApiEvents_1 = require("XtiShared/AppApiEvents");
 var ConsoleLog_1 = require("XtiShared/ConsoleLog");

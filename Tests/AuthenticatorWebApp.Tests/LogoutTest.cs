@@ -74,7 +74,7 @@ namespace HubWebApp.Tests
             return input;
         }
 
-        private static Task<ResultContainer<AppActionRedirectResult>> execute(TestInput input)
+        private static Task<ResultContainer<WebRedirectResult>> execute(TestInput input)
         {
             return input.Api.Auth.Logout.Execute(new EmptyRequest());
         }

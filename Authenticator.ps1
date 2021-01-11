@@ -99,6 +99,8 @@ function Auth-Publish {
     Write-Progress -Activity $activity -Status "Generating the api" -PercentComplete 30
     Auth-GenerateApi -EnvName $EnvName -DefaultVersion $defaultVersion
     
+    tsc -p "$($script:authConfig.ProjectDir)\Scripts\tsconfig.json"
+    
     if($EnvName -eq "Production") {
         Auth-ImportWeb -Prod
     }

@@ -1,0 +1,34 @@
+﻿    <div data-bind="modal: modalOptions" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 data-bind="text: title" class="modal-title"></h5>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="alert alert-danger m-0 rounded-0 border-danger border-left-0 border-right-0">
+                        <!-- ko foreach: errors -->
+                        <!-- ko if: $index() > 0-->
+                        <hr>
+                        <!-- /ko -->
+                        <!-- ko if: caption -->
+                        <h4 data-bind="text: caption" class="alert-heading"></h4>
+                        <!-- /ko -->
+                        <div data-bind="foreach: errors, delegatedEvent: { event: 'click', selector: 'a', callback: onErrorSelected }" class="list-group">
+                            <a class="list-group-item list-group-item-action" href="javascript:;">
+                                <div class="row">
+                                    <div data-bind="text: caption, attr: { 'class': captionCss }"></div>
+                                    <div data-bind="text: message, attr: { 'class': messageCss }"></div>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- /ko -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!-- ko with: okCommand -->
+                    <!-- ko component: { name: componentName, params: $data }--><!-- /ko -->
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
