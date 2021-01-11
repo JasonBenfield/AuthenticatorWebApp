@@ -1,0 +1,29 @@
+﻿<div class="input-group">
+    <select data-bind="
+        attr: {
+            id: name,
+            name: name
+        },
+        css: {
+           'border-danger': hasError
+        },
+        visible: isVisible,
+        enable: isEnabled,
+        value: value,
+        options: items,
+        optionsValue: itemsValue(),
+        optionsText: itemsText(),
+        optionsCaption: itemsCaption" class="form-control"></select>
+    <!-- ko if: hasError -->
+    <button data-bind="dropdown: $data" type="button" class="btn btn-outline-danger dropdown-toggle" data-bs-toggle="dropdown" data-toggle="dropdown">
+        <i class="fas fa-exclamation"></i>
+    </button>
+    <div class="dropdown-menu dropdown-menu-right p-0 border-danger">
+        <div class="alert alert-danger m-0">
+            <ul data-bind="foreach: errors" class="list-group">
+                <li class="dropdown-item-text list-group-item"><span data-bind="text: Message" class="dropdown-item-text text-danger"></span></li>
+            </ul>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>

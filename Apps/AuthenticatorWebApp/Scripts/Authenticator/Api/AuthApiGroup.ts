@@ -11,9 +11,9 @@ export class AuthApiGroup extends AppApiGroup {
 		super(events, resourceUrl, 'AuthApi');
 		this.AuthenticateAction = this.createAction<ILoginCredentials,ILoginResult>('Authenticate', 'Authenticate');
 	}
-
-	private readonly AuthenticateAction: AppApiAction<ILoginCredentials,ILoginResult>;
-
+	
+	readonly AuthenticateAction: AppApiAction<ILoginCredentials,ILoginResult>;
+	
 	Authenticate(model: ILoginCredentials, errorOptions?: IActionErrorOptions) {
 		return this.AuthenticateAction.execute(model, errorOptions || {});
 	}

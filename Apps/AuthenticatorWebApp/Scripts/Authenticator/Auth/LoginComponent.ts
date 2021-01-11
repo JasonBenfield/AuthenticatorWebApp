@@ -1,12 +1,13 @@
 ﻿import { Awaitable } from "XtiShared/Awaitable";
-import { TextInput, PasswordInput } from "XtiShared/TextInput";
 import { AsyncCommand } from "XtiShared/Command";
 import { ColumnCss } from "XtiShared/ColumnCss";
 import { LoginComponentViewModel } from './LoginComponentViewModel';
 import { UrlBuilder } from 'XtiShared/UrlBuilder';
-import { container } from 'tsyringe';
 import { AuthenticatorAppApi } from '../Api/AuthenticatorAppApi';
 import { Alert } from "XtiShared/Alert";
+import { VerifyLoginForm } from "../Api/VerifyLoginForm";
+import * as _ from 'lodash';
+import { FaIconPrefix } from "XtiShared/FaIcon";
 
 export class LoginResult {
     constructor(public readonly token: string) {
@@ -16,17 +17,23 @@ export class LoginResult {
 export class LoginComponent {
     constructor(
         private readonly vm: LoginComponentViewModel,
-        private readonly authenticator: AuthenticatorAppApi
+        private readonly authApi: AuthenticatorAppApi
     ) {
-        this.userName.setColumns(new ColumnCss(3), new ColumnCss(0));
-        this.password.setColumns(new ColumnCss(3), new ColumnCss(0));
+        this.verifyLoginForm.UserName.setColumns(new ColumnCss(3), new ColumnCss());
+        this.verifyLoginForm.Password.setColumns(new ColumnCss(3), new ColumnCss());
+        _.delay(() => {
+            this.verifyLoginForm.UserName.setFocus();
+        }, 100);
+        this.loginCommand.makePrimary();
         this.loginCommand.setText('Login');
+        let loginIcon = this.loginCommand.icon();
+        loginIcon.setPrefix(FaIconPrefix.solid);
+        loginIcon.setName('fa-sign-in-alt');
     }
 
     private readonly awaitable = new Awaitable<LoginResult>();
     private readonly alert = new Alert(this.vm.alert);
-    private readonly userName = new TextInput(this.vm.userName);
-    private readonly password = new PasswordInput(this.vm.password);
+    private readonly verifyLoginForm = new VerifyLoginForm(this.vm.verifyLoginForm);
     private readonly loginCommand = new AsyncCommand(this.vm.loginCommand, this.login.bind(this));
 
     start() {
@@ -36,10 +43,12 @@ export class LoginComponent {
     private async login() {
         this.alert.info('Verifying login...');
         try {
-            let cred = this.getCredentials();
-            await this.verifyLogin(cred);
-            this.alert.info('Opening page...');
-            this.postLogin(cred);
+            let result = await this.verifyLoginForm.save(this.authApi.Auth.VerifyLoginAction);
+            if (result.succeeded()) {
+                let cred = this.getCredentials();
+                this.alert.info('Opening page...');
+                this.postLogin(cred);
+            }
         }
         finally {
             this.alert.clear();
@@ -48,19 +57,14 @@ export class LoginComponent {
 
     private getCredentials() {
         return <ILoginCredentials>{
-            UserName: this.userName.getValue(),
-            Password: this.password.getValue()
+            UserName: this.verifyLoginForm.UserName.getValue(),
+            Password: this.verifyLoginForm.Password.getValue()
         };
-    }
-
-    private verifyLogin(cred: ILoginCredentials) {
-        let authenticator = container.resolve(AuthenticatorAppApi);
-        return authenticator.Auth.Verify(cred);
     }
 
     private postLogin(cred: ILoginCredentials) {
         let form = <HTMLFormElement>document.createElement('form');
-        form.action = this.authenticator.Auth.Login.getUrl(null).getUrl();
+        form.action = this.authApi.Auth.Login.getUrl(null).getUrl();
         form.style.position = 'absolute';
         form.style.top = '-100px';
         form.style.left = '-100px';

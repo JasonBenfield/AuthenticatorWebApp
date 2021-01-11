@@ -5,7 +5,7 @@ using XTI_WebApp.Api;
 
 namespace XTI_AuthApi
 {
-    public sealed class LogoutAction : AppAction<EmptyRequest, AppActionRedirectResult>
+    public sealed class LogoutAction : AppAction<EmptyRequest, WebRedirectResult>
     {
         private readonly AccessForLogin access;
         private readonly TempLogSession tempLogSession;
@@ -16,11 +16,11 @@ namespace XTI_AuthApi
             this.tempLogSession = tempLogSession;
         }
 
-        public async Task<AppActionRedirectResult> Execute(EmptyRequest model)
+        public async Task<WebRedirectResult> Execute(EmptyRequest model)
         {
             await access.Logout();
             await tempLogSession.EndSession();
-            return new AppActionRedirectResult("/Authenticator/Current/Auth");
+            return new WebRedirectResult("/Authenticator/Current/Auth");
         }
     }
 }

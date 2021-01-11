@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using XTI_App.Api;
+using XTI_Core;
 
 namespace XTI_AuthApi
 {
@@ -16,11 +17,11 @@ namespace XTI_AuthApi
         {
             if (string.IsNullOrWhiteSpace(model.UserName))
             {
-                errors.Add(AuthErrors.UserNameIsRequired, nameof(model.UserName));
+                errors.Add(AuthErrors.UserNameIsRequired, "User Name", nameof(model.UserName));
             }
             if (string.IsNullOrWhiteSpace(model.Password))
             {
-                errors.Add(AuthErrors.PasswordIsRequired, nameof(model.Password));
+                errors.Add(AuthErrors.PasswordIsRequired, "Password", nameof(model.Password));
             }
             return Task.CompletedTask;
         }

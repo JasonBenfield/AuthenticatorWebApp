@@ -25,14 +25,14 @@ namespace XTI_AuthApi
             return new AuthenticateAction(auth);
         }
 
-        public AppAction<LoginCredentials, EmptyActionResult> CreateVerifyAction()
+        public AppAction<VerifyLoginForm, EmptyActionResult> CreateVerifyLoginAction()
         {
             var unverifiedUser = new UnverifiedUser(sp.GetService<AppFactory>());
             var hashedPasswordFactory = sp.GetService<IHashedPasswordFactory>();
-            return new VerifyAction(unverifiedUser, hashedPasswordFactory);
+            return new VerifyLoginAction(unverifiedUser, hashedPasswordFactory);
         }
 
-        public AppAction<LoginModel, AppActionRedirectResult> CreateLoginAction()
+        public AppAction<LoginModel, WebRedirectResult> CreateLoginAction()
         {
             var access = sp.GetService<AccessForLogin>();
             var auth = createAuthentication(access);
@@ -49,11 +49,10 @@ namespace XTI_AuthApi
             return new Authentication(tempLogSession, unverifiedUser, access, hashedPasswordFactory, userContext);
         }
 
-        public AppAction<EmptyRequest, AppActionRedirectResult> CreateLogoutAction()
+        public AppAction<EmptyRequest, WebRedirectResult> CreateLogoutAction()
         {
             var access = sp.GetService<AccessForLogin>();
             var tempLogSession = sp.GetService<TempLogSession>();
-            var clock = sp.GetService<Clock>();
             return new LogoutAction(access, tempLogSession);
         }
     }

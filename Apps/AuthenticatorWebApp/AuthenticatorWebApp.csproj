@@ -34,8 +34,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="XTI_WebApp.TagHelpers" Version="1.6.4-dev201229090218322" />
-    <PackageReference Include="XTI_Configuration.Extensions" Version="1.8.3" />
+    <PackageReference Include="XTI_WebApp.TagHelpers" Version="1.7.1-dev210109185441521" />
+    <PackageReference Include="XTI_Configuration.Extensions" Version="1.8.9" />
   </ItemGroup>
 
   <ItemGroup>
