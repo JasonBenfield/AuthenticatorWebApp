@@ -13,13 +13,8 @@ class LoginPage
         private readonly vm: LoginPageViewModel,
         private readonly authenticator: AuthenticatorAppApi
     ) {
-        this.activateLoginComponent();
     }
 
     private readonly loginComponent = new LoginComponent(this.vm.loginComponent, this.authenticator);
-
-    private activateLoginComponent() {
-        return this.loginComponent.start();
-    }
 }
 startup(LoginPageViewModel, LoginPage);

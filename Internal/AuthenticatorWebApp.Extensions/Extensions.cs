@@ -22,7 +22,7 @@ namespace AuthenticatorWebApp.Extensions
             services.AddScoped<AuthActionFactory>();
             services.AddSingleton(_ => AuthenticatorAppKey.Key);
             services.AddScoped<AppApiFactory, AuthenticatorApiFactory>();
-            services.AddScoped(sp => (AuthenticatorAppApi)sp.GetService<AppApi>());
+            services.AddScoped(sp => (AuthenticatorAppApi)sp.GetService<IAppApi>());
             services
                 .AddMvc()
                 .AddJsonOptions(options =>

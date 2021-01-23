@@ -13,11 +13,7 @@ var LoginPage = /** @class */ (function () {
         this.vm = vm;
         this.authenticator = authenticator;
         this.loginComponent = new LoginComponent_1.LoginComponent(this.vm.loginComponent, this.authenticator);
-        this.activateLoginComponent();
     }
-    LoginPage.prototype.activateLoginComponent = function () {
-        return this.loginComponent.start();
-    };
     LoginPage = tslib_1.__decorate([
         tsyringe_1.singleton(),
         tslib_1.__metadata("design:paramtypes", [LoginPageViewModel_1.LoginPageViewModel,

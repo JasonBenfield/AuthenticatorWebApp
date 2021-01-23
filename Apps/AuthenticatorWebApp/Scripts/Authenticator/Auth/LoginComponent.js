@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var Awaitable_1 = require("XtiShared/Awaitable");
 var Command_1 = require("XtiShared/Command");
 var ColumnCss_1 = require("XtiShared/ColumnCss");
 var UrlBuilder_1 = require("XtiShared/UrlBuilder");
@@ -21,7 +20,6 @@ var LoginComponent = /** @class */ (function () {
         var _this = this;
         this.vm = vm;
         this.authApi = authApi;
-        this.awaitable = new Awaitable_1.Awaitable();
         this.alert = new Alert_1.Alert(this.vm.alert);
         this.verifyLoginForm = new VerifyLoginForm_1.VerifyLoginForm(this.vm.verifyLoginForm);
         this.loginCommand = new Command_1.AsyncCommand(this.vm.loginCommand, this.login.bind(this));
@@ -36,9 +34,6 @@ var LoginComponent = /** @class */ (function () {
         loginIcon.setPrefix(FaIcon_1.FaIconPrefix.solid);
         loginIcon.setName('fa-sign-in-alt');
     }
-    LoginComponent.prototype.start = function () {
-        return this.awaitable.start();
-    };
     LoginComponent.prototype.login = function () {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
             var result, cred;
@@ -95,6 +90,9 @@ var LoginComponent = /** @class */ (function () {
         input.name = name;
         input.value = value;
         return input;
+    };
+    LoginComponent.ResultKeys = {
+        loginComplete: 'login-complete'
     };
     return LoginComponent;
 }());

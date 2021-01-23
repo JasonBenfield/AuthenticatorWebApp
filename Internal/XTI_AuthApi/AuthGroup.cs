@@ -1,44 +1,47 @@
-﻿using XTI_App;
-using XTI_App.Api;
+﻿using XTI_App.Api;
 using XTI_WebApp.Api;
 
 namespace XTI_AuthApi
 {
-    public sealed class AuthGroup : AppApiGroup
+    public sealed class AuthGroup : AppApiGroupWrapper
     {
-        public AuthGroup(AppApi api, AuthActionFactory actionFactory)
-            : base
-            (
-                  api,
-                  new NameFromGroupClassName(nameof(AuthGroup)).Value,
-                  ModifierCategoryName.Default,
-                  ResourceAccess.AllowAnonymous(),
-                  new AppApiSuperUser(),
-                  (n, a, u) => new WebAppApiActionCollection(n, a, u)
-            )
+        public AuthGroup(AppApiGroup source, AuthActionFactory actionFactory)
+            : base(source)
         {
-            var actions = Actions<WebAppApiActionCollection>();
-            Index = actions.AddDefaultView();
-            VerifyLogin = actions.AddAction
+            var actions = new WebAppApiActionFactory(source);
+            Index = source.AddAction(actions.DefaultView());
+            VerifyLogin = source.AddAction
             (
-                nameof(VerifyLogin),
-                actionFactory.CreateVerifyLoginAction
+                actions.Action
+                (
+                    nameof(VerifyLogin),
+                    actionFactory.CreateVerifyLoginAction
+                )
             );
-            VerifyLoginForm = actions.AddPartialView
+            VerifyLoginForm = source.AddAction
             (
-                nameof(VerifyLoginForm),
-                () => new PartialViewAppAction<EmptyRequest>(nameof(VerifyLoginForm))
+                actions.PartialView
+                (
+                    nameof(VerifyLoginForm),
+                    () => new PartialViewAppAction<EmptyRequest>(nameof(VerifyLoginForm))
+                )
             );
-            Login = actions.AddAction
+            Login = source.AddAction
             (
-                nameof(Login),
-                () => new LoginModelValidation(),
-                actionFactory.CreateLoginAction
+                actions.Action
+                (
+                    nameof(Login),
+                    () => new LoginModelValidation(),
+                    actionFactory.CreateLoginAction
+                )
             );
-            Logout = actions.AddAction
+            Logout = source.AddAction
             (
-                nameof(Logout),
-                actionFactory.CreateLogoutAction
+                actions.Action
+                (
+                    nameof(Logout),
+                    actionFactory.CreateLogoutAction
+                )
             );
 
         }
