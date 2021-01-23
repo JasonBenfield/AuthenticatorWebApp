@@ -12,6 +12,8 @@ var CommandViewModel = /** @class */ (function () {
         this.isEnabled = ko.observable(true);
         this.icon = new FaIcon_1.FaIconViewModel();
         this.text = ko.observable('');
+        this.textCss = ko.observable('');
+        this.title = ko.observable('');
         this.isActive = ko.observable(false);
         this.contextualClass = new ContextualClass_1.ContextualClassViewModel();
         this._executeRequested = new Events_1.DefaultEvent(this);
@@ -55,7 +57,10 @@ var AsyncCommand = /** @class */ (function () {
             this.vm = vm;
         }
         this.vm.executeRequested.register(function (context) { return _this.execute(context); });
-        this.forEachCommand(function (c) { return ContextualClass_1.ContextualClass.default(c.contextualClass); });
+        this.forEachCommand(function (c) {
+            ContextualClass_1.ContextualClass.default(c.contextualClass);
+            c.textCss('ms-1');
+        });
         for (var prop in this.vm.commands) {
             if (this.vm.commands.hasOwnProperty(prop)) {
                 this.icons[prop] = new FaIcon_1.FaIcon(this.vm.commands[prop].icon, '');
@@ -66,11 +71,23 @@ var AsyncCommand = /** @class */ (function () {
         if (name === void 0) { name = 'default'; }
         return this.icons[name];
     };
+    AsyncCommand.prototype.positionIconRight = function () {
+        this.forEachCommand(function (c) { return c.textCss('me-1 float-start'); });
+    };
+    AsyncCommand.prototype.positionIconRightFor = function (name) {
+        this.vm.commands[name].textCss('me-1 float-start');
+    };
     AsyncCommand.prototype.setText = function (text) {
         this.forEachCommand(function (c) { return c.text(text); });
     };
     AsyncCommand.prototype.setTextFor = function (name, text) {
         this.vm.commands[name].text(text);
+    };
+    AsyncCommand.prototype.setTitle = function (text) {
+        this.forEachCommand(function (c) { return c.title(text); });
+    };
+    AsyncCommand.prototype.setTitleFor = function (name, title) {
+        this.vm.commands[name].title(title);
     };
     AsyncCommand.prototype.makePrimary = function () {
         this.forEachCommand(function (c) { return ContextualClass_1.ContextualClass.primary(c.contextualClass); });

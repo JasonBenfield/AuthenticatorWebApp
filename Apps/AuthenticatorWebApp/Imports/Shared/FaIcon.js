@@ -6,10 +6,10 @@ var ComponentTemplate_1 = require("./ComponentTemplate");
 var template = require("./Templates/FaIcon.html");
 var FaIconViewModel = /** @class */ (function () {
     function FaIconViewModel() {
-        this.templateName = 'fa-icon';
+        this.componentName = ko.observable('fa-icon');
         this.cssClass = ko.observable('');
         this.isVisible = ko.observable(true);
-        new ComponentTemplate_1.ComponentTemplate(this.templateName, template).register();
+        new ComponentTemplate_1.ComponentTemplate(this.componentName(), template).register();
     }
     return FaIconViewModel;
 }());

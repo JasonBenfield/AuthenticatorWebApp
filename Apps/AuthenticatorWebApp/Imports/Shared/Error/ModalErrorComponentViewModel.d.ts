@@ -3,9 +3,9 @@ import { ModalOptionsViewModel } from '../ModalOptionsViewModel';
 import { ModalErrorViewModel } from './ModalErrorViewModel';
 import { DefaultEventHandler } from '../Events';
 import { ErrorModel } from '../ErrorModel';
-export declare class ModalErrorComponentViewModel {
+import { ComponentViewModel } from '../ComponentViewModel';
+export declare class ModalErrorComponentViewModel extends ComponentViewModel {
     constructor();
-    readonly componentName: ko.Observable<string>;
     readonly title: ko.Observable<string>;
     readonly isVisible: ko.Observable<boolean>;
     readonly modalOptions: ModalOptionsViewModel;

@@ -2,12 +2,14 @@ import * as ko from 'knockout';
 import { DefaultEventHandler } from './Events';
 import { FaIconViewModel, FaIcon } from './FaIcon';
 import { ContextualClassViewModel } from './ContextualClass';
-export declare class CommandViewModel {
+export declare class CommandViewModel implements IComponentViewModel {
     readonly componentName: ko.Observable<string>;
     readonly isVisible: ko.Observable<boolean>;
     readonly isEnabled: ko.Observable<boolean>;
     readonly icon: FaIconViewModel;
     readonly text: ko.Observable<string>;
+    readonly textCss: ko.Observable<string>;
+    readonly title: ko.Observable<string>;
     readonly isActive: ko.Observable<boolean>;
     readonly contextualClass: ContextualClassViewModel;
     private readonly _executeRequested;
@@ -33,8 +35,12 @@ export declare class AsyncCommand {
     private executionCount;
     private readonly icons;
     icon(name?: string): FaIcon;
+    positionIconRight(): void;
+    positionIconRightFor(name: string): void;
     setText(text: string): void;
     setTextFor(name: string, text: string): void;
+    setTitle(text: string): void;
+    setTitleFor(name: string, title: string): void;
     makePrimary(): void;
     makePrimaryFor(name: string): void;
     makeSecondary(): void;

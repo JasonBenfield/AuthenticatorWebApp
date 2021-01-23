@@ -1,6 +1,15 @@
 ﻿<!-- ko if: isVisible -->
-<a data-bind="css: { active: isActive }, click: requestExecute, enable: isEnabled" class="nav-link" href="javascript:;">
-    <!-- ko component: { name: 'fa-icon', params: icon } --><!-- /ko -->
-    <span data-bind="text: text"></span>
+<a data-bind="css: { 
+        active: isActive 
+    }, 
+    attr: {
+        title: title
+    },
+    click: requestExecute, 
+    enable: isEnabled" class="nav-link" href="javascript:;">
+    <!-- ko with: icon -->
+    <!-- ko component: { name: componentName, params: $data } --><!-- /ko -->
+    <!-- /ko -->
+    <span data-bind="text: text, attr: { 'class': textCss }"></span>
 </a>
 <!-- /ko -->

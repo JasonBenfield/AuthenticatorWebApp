@@ -1,6 +1,7 @@
-export declare class Awaitable<TResult> {
+import { Result } from "./Result";
+export declare class Awaitable {
     private _resolve;
     isInProgress(): boolean;
-    start(): Promise<TResult>;
-    resolve(result: TResult): void;
+    start(): Promise<Result>;
+    resolve(result: Result): void;
 }

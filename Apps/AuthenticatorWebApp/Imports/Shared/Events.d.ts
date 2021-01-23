@@ -27,6 +27,7 @@ export declare class DefaultEvent<TArgs> implements IEvent<TArgs> {
     invoke(args: TArgs): void;
     unregister(identifier: any): void;
     dispose(): void;
+    handler(): DefaultEventHandler<TArgs>;
 }
 export declare class DefaultEventHandler<TArgs> implements IEventHandler<TArgs> {
     private readonly source;

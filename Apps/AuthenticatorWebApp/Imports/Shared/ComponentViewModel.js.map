@@ -1,0 +1,1 @@
+{"version":3,"file":"ComponentViewModel.js","sourceRoot":"","sources":["../../Scripts/Shared/ComponentViewModel.ts"],"names":[],"mappings":";;AAAA,6BAA+B;AAE/B;IACI,4BAAY,iBAAqC;QAKxC,kBAAa,GAAG,EAAE,CAAC,UAAU,CAAC,EAAE,CAAC,CAAC;QAJvC,IAAI,CAAC,aAAa,CAAC,iBAAiB,CAAC,IAAI,CAAC,CAAC;QAC3C,iBAAiB,CAAC,QAAQ,EAAE,CAAC;IACjC,CAAC;IAGL,yBAAC;AAAD,CAAC,AAPD,IAOC;AAPY,gDAAkB"}

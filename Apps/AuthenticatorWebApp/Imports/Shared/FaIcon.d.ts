@@ -1,7 +1,7 @@
 import * as ko from 'knockout';
 export declare class FaIconViewModel {
     constructor();
-    readonly templateName = "fa-icon";
+    readonly componentName: ko.Observable<string>;
     readonly cssClass: ko.Observable<string>;
     readonly isVisible: ko.Observable<boolean>;
 }

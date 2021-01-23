@@ -102,6 +102,9 @@ var DefaultEvent = /** @class */ (function () {
     DefaultEvent.prototype.dispose = function () {
         this._callbacks.splice(0, this._callbacks.length);
     };
+    DefaultEvent.prototype.handler = function () {
+        return new DefaultEventHandler(this);
+    };
     return DefaultEvent;
 }());
 exports.DefaultEvent = DefaultEvent;
