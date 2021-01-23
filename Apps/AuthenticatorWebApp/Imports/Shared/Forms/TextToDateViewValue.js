@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var FormattedDate_1 = require("../FormattedDate");
 var TypedFieldViewValue_1 = require("./TypedFieldViewValue");
 var TextToDateViewValue = /** @class */ (function (_super) {
     tslib_1.__extends(TextToDateViewValue, _super);
@@ -12,7 +11,7 @@ var TextToDateViewValue = /** @class */ (function (_super) {
         return value ? new Date(value) : null;
     };
     TextToDateViewValue.prototype._toView = function (value) {
-        return value ? new FormattedDate_1.FormattedDate(value, 'yyyy-MM-dd') : '';
+        return value ? value.toISOString().substring(0, 10) : '';
     };
     return TextToDateViewValue;
 }(TypedFieldViewValue_1.TypedFieldViewValue));

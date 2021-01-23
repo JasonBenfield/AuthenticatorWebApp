@@ -6,37 +6,38 @@ var _ = require("lodash");
 var ContextualClass_1 = require("./ContextualClass");
 var template = require("./Templates/Alert.html");
 var ComponentTemplate_1 = require("./ComponentTemplate");
-var AlertViewModel = /** @class */ (function () {
+var ComponentViewModel_1 = require("./ComponentViewModel");
+var AlertViewModel = /** @class */ (function (_super) {
+    tslib_1.__extends(AlertViewModel, _super);
     function AlertViewModel() {
-        var _this = this;
-        this.componentName = ko.observable('alert');
-        this.contextualClass = new ContextualClass_1.ContextualClassViewModel();
-        this.message = ko.observable('');
-        this.hasMessage = ko.pureComputed(function () { return Boolean(_this.message()); });
-        this.hasSuccessMessage = ko.pureComputed(function () {
+        var _this = _super.call(this, new ComponentTemplate_1.ComponentTemplate('alert', template)) || this;
+        _this.contextualClass = new ContextualClass_1.ContextualClassViewModel();
+        _this.message = ko.observable('');
+        _this.hasMessage = ko.pureComputed(function () { return Boolean(_this.message()); });
+        _this.hasSuccessMessage = ko.pureComputed(function () {
             var hasMessage = _this.hasMessage();
             var isSuccess = _this.contextualClass.isSuccess();
             return hasMessage && isSuccess;
         });
-        this.hasInfoMessage = ko.pureComputed(function () {
+        _this.hasInfoMessage = ko.pureComputed(function () {
             var hasMessage = _this.hasMessage();
             var isInfo = _this.contextualClass.isInfo();
             return hasMessage && isInfo;
         });
-        this.hasWarningMessage = ko.pureComputed(function () {
+        _this.hasWarningMessage = ko.pureComputed(function () {
             var hasMessage = _this.hasMessage();
             var isWarning = _this.contextualClass.isWarning();
             return hasMessage && isWarning;
         });
-        this.hasDangerMessage = ko.pureComputed(function () {
+        _this.hasDangerMessage = ko.pureComputed(function () {
             var hasMessage = _this.hasMessage();
             var isDanger = _this.contextualClass.isDanger();
             return hasMessage && isDanger;
         });
-        new ComponentTemplate_1.ComponentTemplate(this.componentName(), template).register();
+        return _this;
     }
     return AlertViewModel;
-}());
+}(ComponentViewModel_1.ComponentViewModel));
 exports.AlertViewModel = AlertViewModel;
 var Alert = /** @class */ (function () {
     function Alert(vm) {

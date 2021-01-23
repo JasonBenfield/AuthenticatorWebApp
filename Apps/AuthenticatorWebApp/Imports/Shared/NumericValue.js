@@ -5,9 +5,13 @@ var NumericValue = /** @class */ (function () {
         this.Value = Value;
         this.DisplayText = DisplayText;
     }
-    NumericValue.prototype.equalsAny = function (other) {
-        for (var _i = 0, other_1 = other; _i < other_1.length; _i++) {
-            var item = other_1[_i];
+    NumericValue.prototype.equalsAny = function () {
+        var other = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            other[_i] = arguments[_i];
+        }
+        for (var _a = 0, other_1 = other; _a < other_1.length; _a++) {
+            var item = other_1[_a];
             if (this.equals(item)) {
                 return true;
             }

@@ -1,8 +1,8 @@
 import * as ko from 'knockout';
 import { ContextualClassViewModel } from './ContextualClass';
-export declare class AlertViewModel {
+import { ComponentViewModel } from './ComponentViewModel';
+export declare class AlertViewModel extends ComponentViewModel {
     constructor();
-    readonly componentName: ko.Observable<string>;
     readonly contextualClass: ContextualClassViewModel;
     readonly message: ko.Observable<string>;
     readonly hasMessage: ko.PureComputed<boolean>;

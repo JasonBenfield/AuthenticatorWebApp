@@ -6,5 +6,7 @@ export declare class AppApiAction<TArgs, TResult> {
     constructor(events: AppApiEvents, resourceUrl: AppResourceUrl, actionName: string, friendlyName: string);
     private readonly resourceUrl;
     execute(data: TArgs, errorOptions: IActionErrorOptions): Promise<TResult>;
+    private static dateRegex;
+    private parseDates;
     toString(): string;
 }

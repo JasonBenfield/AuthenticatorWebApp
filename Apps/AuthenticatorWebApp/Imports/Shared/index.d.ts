@@ -138,3 +138,12 @@ interface IFieldViewModel {
     readonly value: IFieldValueViewModel;
     readonly isVisible: ko.Observable<boolean>;
 }
+
+interface IComponentViewModel {
+    readonly componentName: ko.Observable<string>;
+}
+
+interface IComponentTemplate {
+    readonly name: string;
+    register();
+}

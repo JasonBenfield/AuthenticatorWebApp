@@ -8,19 +8,21 @@ var ModalOptionsViewModel_1 = require("../ModalOptionsViewModel");
 var CommandButtonTemplate_1 = require("../Templates/CommandButtonTemplate");
 var tsyringe_1 = require("tsyringe");
 var Events_1 = require("../Events");
-var ModalErrorComponentViewModel = /** @class */ (function () {
+var ComponentViewModel_1 = require("../ComponentViewModel");
+var ModalErrorComponentViewModel = /** @class */ (function (_super) {
+    tslib_1.__extends(ModalErrorComponentViewModel, _super);
     function ModalErrorComponentViewModel() {
-        this.componentName = ko.observable('modal-error-component');
-        this.title = ko.observable('');
-        this.isVisible = ko.observable(false);
-        this.modalOptions = new ModalOptionsViewModel_1.ModalOptionsViewModel();
-        this.errors = ko.observableArray([]);
-        this.errorSelectedEvents = new Events_1.ArrayItemEventCollection(this.errors);
-        this.okCommand = CommandButtonTemplate_1.createCommandButtonViewModel();
-        this._errorSelected = new Events_1.DefaultEvent(this);
-        this.errorSelected = new Events_1.DefaultEventHandler(this._errorSelected);
-        new ComponentTemplate_1.ComponentTemplate(this.componentName(), template).register();
-        this.errorSelectedEvents.register(function (e) { return e.errorSelected; }, this.onErrorSelected.bind(this));
+        var _this = _super.call(this, new ComponentTemplate_1.ComponentTemplate('modal-error-component', template)) || this;
+        _this.title = ko.observable('');
+        _this.isVisible = ko.observable(false);
+        _this.modalOptions = new ModalOptionsViewModel_1.ModalOptionsViewModel();
+        _this.errors = ko.observableArray([]);
+        _this.errorSelectedEvents = new Events_1.ArrayItemEventCollection(_this.errors);
+        _this.okCommand = CommandButtonTemplate_1.createCommandButtonViewModel();
+        _this._errorSelected = new Events_1.DefaultEvent(_this);
+        _this.errorSelected = new Events_1.DefaultEventHandler(_this._errorSelected);
+        _this.errorSelectedEvents.register(function (e) { return e.errorSelected; }, _this.onErrorSelected.bind(_this));
+        return _this;
     }
     ModalErrorComponentViewModel.prototype.onErrorSelected = function (error) {
         this._errorSelected.invoke(error);
@@ -30,6 +32,6 @@ var ModalErrorComponentViewModel = /** @class */ (function () {
         tslib_1.__metadata("design:paramtypes", [])
     ], ModalErrorComponentViewModel);
     return ModalErrorComponentViewModel;
-}());
+}(ComponentViewModel_1.ComponentViewModel));
 exports.ModalErrorComponentViewModel = ModalErrorComponentViewModel;
 //# sourceMappingURL=ModalErrorComponentViewModel.js.map

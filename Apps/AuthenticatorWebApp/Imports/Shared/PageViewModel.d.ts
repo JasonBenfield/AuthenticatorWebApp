@@ -1,5 +1,4 @@
-import * as ko from 'knockout';
-export declare class PageViewModel {
+import { ComponentViewModel } from './ComponentViewModel';
+export declare class PageViewModel extends ComponentViewModel {
     constructor(template: any);
-    readonly componentName: ko.Observable<string>;
 }
