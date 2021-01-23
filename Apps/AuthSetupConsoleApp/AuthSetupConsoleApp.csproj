@@ -6,9 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MainDB.EF.SqlServer" Version="1.9.4" />
+    <PackageReference Include="MainDB.EF.SqlServer" Version="1.10.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-    <PackageReference Include="XTI_Configuration.Extensions" Version="1.8.9" />
+    <PackageReference Include="XTI_Configuration.Extensions" Version="1.8.11" />
     <PackageReference Include="XTI_Secrets.Extensions" Version="1.7.4" />
   </ItemGroup>
 

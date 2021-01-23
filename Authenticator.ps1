@@ -99,7 +99,7 @@ function Auth-Publish {
     Write-Progress -Activity $activity -Status "Generating the api" -PercentComplete 30
     Auth-GenerateApi -EnvName $EnvName -DefaultVersion $defaultVersion
     
-    tsc -p "$($script:authConfig.ProjectDir)\Scripts\tsconfig.json"
+    tsc -p "$($script:authConfig.ProjectDir)\Scripts\$($script:authConfig.AppName)\tsconfig.json"
     
     if($EnvName -eq "Production") {
         Auth-ImportWeb -Prod
@@ -107,7 +107,7 @@ function Auth-Publish {
     else {
         Auth-ImportWeb
     }
-
+    
     Write-Progress -Activity $activity -Status "Running web pack" -PercentComplete 40
     $script:authConfig | Auth-Webpack
 
@@ -151,7 +151,10 @@ function Auth-GenerateApi {
         [string] $EnvName="Production",
         [string] $DefaultVersion
     )
+    dotnet build
     dotnet run --project Apps/AuthApiGeneratorApp --environment=$EnvName --Output:DefaultVersion="`"$DefaultVersion`""
+    tsc -p Apps/AuthenticatorWebApp/Scripts/Authenticator/tsconfig.json
+    
     if( $LASTEXITCODE -ne 0 ) {
         Throw "Auth api generator failed"
     }

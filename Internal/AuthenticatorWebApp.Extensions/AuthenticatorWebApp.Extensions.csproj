@@ -9,7 +9,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="XTI_App.DB.SqlServer" Version="1.6.3-dev201128133312505" />
-    <PackageReference Include="XTI_WebApp.Extensions" Version="1.7.0" />
+    <PackageReference Include="XTI_WebApp.Extensions" Version="1.7.1" />
   </ItemGroup>
 
   <ItemGroup>

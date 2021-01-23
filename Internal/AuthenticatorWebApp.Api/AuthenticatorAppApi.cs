@@ -6,18 +6,26 @@ using XTI_WebApp.Api;
 
 namespace AuthenticatorWebApp.Api
 {
-    public sealed class AuthenticatorAppApi : WebAppApi
+    public sealed class AuthenticatorAppApi : WebAppApiWrapper
     {
         public AuthenticatorAppApi
         (
             IAppApiUser user,
             IServiceProvider sp
         )
-            : base(AuthenticatorAppKey.Key, user, ResourceAccess.AllowAnonymous())
+            : base
+            (
+                new AppApi
+                (
+                    AuthenticatorAppKey.Key,
+                    user,
+                    ResourceAccess.AllowAnonymous()
+                )
+            )
         {
             var authGroupFactory = new AuthActionFactory(sp);
-            Auth = AddGroup((u) => new AuthGroup(this, authGroupFactory));
-            AuthApi = AddGroup((u) => new AuthApiGroup(this, authGroupFactory));
+            Auth = new AuthGroup(source.AddGroup(nameof(Auth)), authGroupFactory);
+            AuthApi = new AuthApiGroup(source.AddGroup(nameof(AuthApi)), authGroupFactory);
         }
         public AuthGroup Auth { get; }
         public AuthApiGroup AuthApi { get; }

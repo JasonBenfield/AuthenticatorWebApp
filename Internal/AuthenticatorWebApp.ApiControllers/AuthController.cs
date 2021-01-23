@@ -32,6 +32,7 @@ namespace AuthenticatorWebApp.ApiControllers
             return api.Group("Auth").Action<VerifyLoginForm, EmptyActionResult>("VerifyLogin").Execute(model);
         }
 
+        [ResponseCache(CacheProfileName = "Default")]
         public async Task<IActionResult> VerifyLoginForm()
         {
             var result = await api.Group("Auth").Action<EmptyRequest, WebPartialViewResult>("VerifyLoginForm").Execute(new EmptyRequest());

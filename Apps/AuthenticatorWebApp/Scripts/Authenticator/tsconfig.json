@@ -11,7 +11,7 @@
     "sourceMap": true,
     "target": "es5",
     "importHelpers": true,
-    "baseUrl": "../",
+    "baseUrl": "../../",
     "paths": {
       "XtiShared/*": [ "Imports/Shared/*" ]
     },

@@ -5,17 +5,14 @@ namespace AuthenticatorWebApp.Api
 {
     public sealed class AuthenticatorApiFactory : AppApiFactory
     {
-        private readonly IServiceProvider sp;
+        private readonly IServiceProvider services;
 
-        public AuthenticatorApiFactory(IServiceProvider sp)
+        public AuthenticatorApiFactory(IServiceProvider services)
         {
-            this.sp = sp;
+            this.services = services;
         }
 
-        protected override AppApi _Create(IAppApiUser user) => new AuthenticatorAppApi
-        (
-            user,
-            sp
-        );
+        protected override IAppApi _Create(IAppApiUser user)
+            => new AuthenticatorAppApi(user, services);
     }
 }

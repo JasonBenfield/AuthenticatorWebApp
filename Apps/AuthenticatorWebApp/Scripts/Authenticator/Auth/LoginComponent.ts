@@ -1,5 +1,4 @@
-﻿import { Awaitable } from "XtiShared/Awaitable";
-import { AsyncCommand } from "XtiShared/Command";
+﻿import { AsyncCommand } from "XtiShared/Command";
 import { ColumnCss } from "XtiShared/ColumnCss";
 import { LoginComponentViewModel } from './LoginComponentViewModel';
 import { UrlBuilder } from 'XtiShared/UrlBuilder';
@@ -15,6 +14,10 @@ export class LoginResult {
 }
 
 export class LoginComponent {
+    public static readonly ResultKeys = {
+        loginComplete: 'login-complete'
+    };
+
     constructor(
         private readonly vm: LoginComponentViewModel,
         private readonly authApi: AuthenticatorAppApi
@@ -31,14 +34,9 @@ export class LoginComponent {
         loginIcon.setName('fa-sign-in-alt');
     }
 
-    private readonly awaitable = new Awaitable<LoginResult>();
     private readonly alert = new Alert(this.vm.alert);
     private readonly verifyLoginForm = new VerifyLoginForm(this.vm.verifyLoginForm);
     private readonly loginCommand = new AsyncCommand(this.vm.loginCommand, this.login.bind(this));
-
-    start() {
-        return this.awaitable.start();
-    }
 
     private async login() {
         this.alert.info('Verifying login...');

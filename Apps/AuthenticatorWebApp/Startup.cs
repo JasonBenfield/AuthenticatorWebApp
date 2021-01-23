@@ -45,8 +45,6 @@ namespace AuthenticatorWebApp
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseDefaultResponseCaching();
-
             app.UseMiddleware<TerminateMiddleware>();
             app.UseXti();
 
